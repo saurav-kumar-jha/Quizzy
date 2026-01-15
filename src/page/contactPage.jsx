@@ -218,8 +218,7 @@ export default function ContactFeedbackPage() {
               onClick={() => setRating(star)}
               className="transition-all duration-200 hover:scale-110"
             >
-              <Star
-                className={`w-8 h-8 ${
+              <Star className={`w-8 h-8 ${
                   star <= rating
                     ? 'fill-yellow-400 text-yellow-400'
                     : 'text-gray-600 hover:text-gray-400'
@@ -315,7 +314,7 @@ export default function ContactFeedbackPage() {
           <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
-                <Mail className="w-6 h-6 text-white" />
+                <Mail className="w-6 h-6 text-white" /> 
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-white">Contact Us</h2>
@@ -332,7 +331,7 @@ export default function ContactFeedbackPage() {
                     value={contactData.name}
                     onChange={(e) => setContactData({...contactData, name: e.target.value})}
                     className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
-                    placeholder="John Doe"
+                    placeholder="Your name"
                     required
                   />
                 </div>
@@ -344,7 +343,7 @@ export default function ContactFeedbackPage() {
                     value={contactData.email}
                     onChange={(e) => setContactData({...contactData, email: e.target.value})}
                     className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
-                    placeholder="john@example.com"
+                    placeholder="name@example.com"
                     required
                   />
                 </div>
@@ -449,7 +448,7 @@ export default function ContactFeedbackPage() {
                   value={experienceData.message}
                   onChange={(e) => setExperienceData({...experienceData, message: e.target.value})}
                   className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
-                  placeholder="Share your experience with QuizMaster..."
+                  placeholder="Share your experience with Quizzy..."
                   rows="6"
                   required
                 />
@@ -498,7 +497,7 @@ export default function ContactFeedbackPage() {
                     value={testimonialData.name}
                     onChange={(e) => setTestimonialData({...testimonialData, name: e.target.value})}
                     className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
-                    placeholder="John Doe"
+                    placeholder="Your name"
                     required
                   />
                 </div>
@@ -589,7 +588,7 @@ export default function ContactFeedbackPage() {
                     value={suggestionData.name}
                     onChange={(e) => setSuggestionData({...suggestionData, name: e.target.value})}
                     className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
-                    placeholder="John Doe"
+                    placeholder="Your name"
                     required
                   />
                 </div>
@@ -601,7 +600,7 @@ export default function ContactFeedbackPage() {
                     value={suggestionData.email}
                     onChange={(e) => setSuggestionData({...suggestionData, email: e.target.value})}
                     className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
-                    placeholder="john@example.com"
+                    placeholder="name@example.com"
                     required
                   />
                 </div>

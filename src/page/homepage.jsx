@@ -271,7 +271,7 @@ export default function QuizMasterHomepage() {
             <p className="text-xl text-purple-100 mb-8">
               Join thousands of educators who are already creating amazing quizzes for free
             </p>
-            <button className="bg-white text-purple-600 px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointor" onClick={()=>navigate("/dashboard?tab=create")}>
+            <button className="bg-white text-purple-600 px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer" onClick={()=>navigate("/dashboard?tab=create")}>
               Create Your First Quiz Now
             </button>
           </div>

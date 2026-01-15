@@ -173,8 +173,8 @@ export default function TeacherDashboard() {
       subject: teacherProfile.subject,
       avatar: teacherProfile.profile
     });
-    setAvatarPreview(null);
-    setAvatarFile(null);
+    setAvatarPreview(teacherProfile.profile || null);
+    setAvatarFile(teacherProfile.profile || null);
     setShowEdit(true);
   };
 
@@ -220,7 +220,7 @@ export default function TeacherDashboard() {
 
     try {
       // console.log("avatar file",avatarFile)
-      let profile_url = "";
+      let profile_url = teacherProfile.profile || "";
 
       if (avatarFile) {
         profile_url = await uploadImg(avatarFile);
