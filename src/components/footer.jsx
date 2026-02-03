@@ -1,7 +1,9 @@
 import { BookOpen } from 'lucide-react'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Footer() {
+  const navigate = useNavigate()
   return (
     
     <footer id="contact" className="bg-slate-950 py-12 px-4 border-t border-purple-500/20">
@@ -21,10 +23,10 @@ function Footer() {
             <div>
               <h3 className="text-white font-bold mb-4">Platform</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Features</a></li>
+                <li><a href="features" className="text-gray-400 hover:text-purple-400 transition-colors">Features</a></li>
                 <li><a href="dashboard?tab=create" className="text-gray-400 hover:text-purple-400 transition-colors">Create Quiz</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">How It Works</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Pricing</a></li>
+                <li><a href="how-it-work" className="text-gray-400 hover:text-purple-400 transition-colors">How It Works</a></li>
+                {/* <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Pricing</a></li> */}
               </ul>
             </div>
             <div>
@@ -32,8 +34,8 @@ function Footer() {
               <ul className="space-y-2">
                 <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Documentation</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Tutorials</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Blog</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Support</a></li>
+                {/* <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Blog</a></li> */}
+                {/* <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Support</a></li> */}
               </ul>
             </div>
             <div>
@@ -41,14 +43,14 @@ function Footer() {
               <ul className="space-y-2">
                 <li className="text-gray-400"></li>
                 <li className="text-gray-400">+91 9934787172</li>
-                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Help Center</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Community</a></li>
+                {/* <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Help Center</a></li> */}
+                {/* <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">Community</a></li> */}
               </ul>
             </div>
           </div>
           <div className="border-t border-purple-500/20 pt-8 text-center">
             <p className="text-gray-400">
-              © 2025 Quizzy. Built with passion for educators. All rights reserved.
+              © 2026 Quizzy. Built with passion for educators. All rights reserved.
             </p>
           </div>
         </div>

@@ -85,7 +85,7 @@ export default function TeacherDashboard() {
 
   const handleCreateQuiz = async (e) => {
     e.preventDefault()
-    // console.log("quizData:",quizData.title,quizData.description,quizData.duration)
+    console.log("quizData:", quizData)
 
     setLoading(true)
     try {
@@ -93,7 +93,10 @@ export default function TeacherDashboard() {
         name: quizData.title,
         desc: quizData.description,
         validTill: quizData.duration,
-        teacherId: user.id
+        teacherId: user.id,
+        reqName: quizData.reqName,
+        reqEmail: quizData.reqEmail,
+        reqRoll: quizData.reqRoll
       }, {
         headers: {
           "Authorization": `Bearer ${user.token}`
@@ -378,7 +381,7 @@ export default function TeacherDashboard() {
                     {
                       teacherProfile.profile ? (
                         <div className="w-24 h-24 rounded-full overflow-hidden border border-purple-500/30 flex items-center justify-center">
-                         <img src={teacherProfile.profile} alt={teacherProfile.name} className='w-full h-full object-cover transition-transform duration-300 hover:scale-105' />
+                          <img src={teacherProfile.profile} alt={teacherProfile.name} className='w-full h-full object-cover transition-transform duration-300 hover:scale-105' />
                         </div>
                       ) : (
                         <div className="w-24 h-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-3xl font-bold">
@@ -632,6 +635,7 @@ export default function TeacherDashboard() {
                 <h2 className="text-3xl font-bold text-white mb-6">Create New Quiz</h2>
                 {showCreateQuizOpt && (
                   <div className="space-y-4 mb-8">
+                    {/* Title  */}
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">Quiz Title *</label>
                       <input
@@ -642,7 +646,7 @@ export default function TeacherDashboard() {
                         placeholder="Enter quiz title"
                       />
                     </div>
-
+                    {/* Description  */}
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">Description</label>
                       <textarea
@@ -653,7 +657,7 @@ export default function TeacherDashboard() {
                         rows="3"
                       />
                     </div>
-
+                    {/* Duration  */}
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">Duration (minutes)</label>
                       <input
@@ -664,10 +668,78 @@ export default function TeacherDashboard() {
                         placeholder="30"
                       />
                     </div>
-                    <button
-                      onClick={handleCreateQuiz}
-                      className="w-full bg-purple-500 cursor-pointer flex items-center justify-center hover:bg-purple-600 text-white font-semibold py-3 rounded-xl transition-all duration-300"
-                    >
+                    {/* Student Details Required */}
+                    <div className="mt-6">
+                      <label className="block text-sm font-medium text-gray-300 mb-3">
+                        Student Details Required
+                      </label>
+
+                      <div className="space-y-3">
+
+                        {/* Name Toggle */}
+                        <div className="flex items-center justify-between bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3">
+                          <span className="text-gray-300">Require Name</span>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setQuizData(prev => ({ ...prev, reqName: !prev.reqName }))
+                            }
+                            className={`w-12 h-6 flex items-center cursor-pointer rounded-full p-1 transition-all ${quizData.reqName ? 'bg-purple-500' : 'bg-gray-600'
+                              }`}
+                          >
+                            <span
+                              className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-all ${quizData.reqName ? 'translate-x-6' : 'translate-x-0'
+                                }`}
+                            />
+                          </button>
+                        </div>
+
+                        {/* Email Toggle */}
+                        <div className="flex items-center justify-between bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3">
+                          <span className="text-gray-300">Require Email</span>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setQuizData(prev => ({ ...prev, reqEmail: !prev.reqEmail }))
+                            }
+                            className={`w-12 h-6 flex items-center cursor-pointer rounded-full p-1 transition-all ${quizData.reqEmail ? 'bg-purple-500' : 'bg-gray-600'
+                              }`}
+                          >
+                            <span
+                              className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-all ${quizData.reqEmail ? 'translate-x-6' : 'translate-x-0'
+                                }`}
+                            />
+                          </button>
+                        </div>
+
+                        {/* Roll No Toggle */}
+                        <div className="flex items-center justify-between bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3">
+                          <span className="text-gray-300">Require Roll Number</span>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setQuizData(prev => ({ ...prev, reqRoll: !prev.reqRoll }))
+                            }
+                            className={`w-12 h-6 flex items-center cursor-pointer rounded-full p-1 transition-all ${quizData.reqRoll ? 'bg-purple-500' : 'bg-gray-600'
+                              }`}
+                          >
+                            <span
+                              className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-all ${quizData.reqRoll ? 'translate-x-6' : 'translate-x-0'
+                                }`}
+                            />
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-400 mt-2">
+                      These options control which details students must fill before attempting the quiz.
+                    </p>
+
+
+
+                    {/* Submit btn  */}
+                    <button onClick={handleCreateQuiz} className="w-full bg-purple-500 cursor-pointer flex items-center justify-center hover:bg-purple-600 text-white font-semibold py-3 rounded-xl transition-all duration-300">
                       {
                         loading ? (
                           <>

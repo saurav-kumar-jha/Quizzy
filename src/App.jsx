@@ -12,6 +12,8 @@ import StudentQuizPage from './page/testPage'
 import QuizResultsDetailPage from './page/quizResultDetailPage'
 import ContactFeedbackPage from './page/contactPage'
 import { ToastContainer } from 'react-toastify'
+import FeaturesPage from './page/features'
+import HowItWorksPage from './page/hiw'
 
 const Home = ()=>{
   const navigate = useLocation()
@@ -54,6 +56,14 @@ const router = createBrowserRouter([
     {
       path:"/contact",
       element:<ContactFeedbackPage/>
+    },
+    {
+      path:"/features",
+      element:<FeaturesPage/>
+    },
+    {
+      path:"/how-it-work",
+      element:<HowItWorksPage/>
     }
   ]},
   {

@@ -19,6 +19,9 @@ export const AuthProvider = ({ children }) => {
     title: '',
     description: '',
     duration: '',
+    reqName:true,
+    reqEmail:true,
+    reqRoll:true,
     questions: []
   });
   const [previousQuizzes, setPreviousQuizzes] = useState([]);
