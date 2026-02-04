@@ -25,6 +25,8 @@ export const AuthProvider = ({ children }) => {
     questions: []
   });
   const [previousQuizzes, setPreviousQuizzes] = useState([]);
+  const [authReady, setAuthReady] = useState(false);
+
 
   //set user data or remove data
   useEffect(() => {
@@ -41,6 +43,7 @@ export const AuthProvider = ({ children }) => {
   const validateToken = async () => {
     if (!user?.token) {
       setLoading(false)
+      setAuthReady(true);
       return;
     }
 
@@ -50,6 +53,7 @@ export const AuthProvider = ({ children }) => {
           "Authorization": `Bearer ${user.token}`
         }
       })
+      // console.log("Validate token", res)
       if (res.status == 200) {
         setIsLoggedIn(true)
       }
@@ -60,6 +64,7 @@ export const AuthProvider = ({ children }) => {
       }
     } finally {
       setLoading(false)
+      setAuthReady(true);
     }
   }
 
@@ -70,32 +75,35 @@ export const AuthProvider = ({ children }) => {
   //fetch Quizz
   useEffect(() => {
 
-    if(Isloading)return;
-    if (!user?.token || !user?.id) return;
+    if (!authReady || !user?.token || !user?.id || !isLoggedIn || Isloading) return;
 
-    const fetchQuizz = async ()=>{
-      try {
-        const res = await api.get(`/auth/${user.id}`,{
-          headers:{
-            "Authorization":`Bearer ${user.token}`
-          }
-        })
-        console.log(res.data[0].quiz)
-        const quiz = res.data[0]?.quiz || []
-        setPreviousQuizzes(quiz)
-        setQuizData(prev => ({
-          ...prev,
-          questions: quiz.questions && quiz.questions.length > 0 
-            ? quiz.questions 
-            : prev.questions
-        }));
-      } catch (error) {
-        console.error("Error:",error.message) 
-      }
-    }
+    
     fetchQuizz()
     
-  }, [Isloading, user.id, user.token])
+  }, [Isloading, user.id, authReady])
+
+  const fetchQuizz = async ()=>{
+    console.log("fetching quizzes")
+    try {
+      const res = await api.get(`/auth/${user.id}`,{
+        headers:{
+          Authorization:`Bearer ${user.token}`
+        }
+      })
+      // console.log(res.data[0].quiz)
+      // console.log("Response in authProvider", res)
+      const quiz = res.data[0]?.quiz || []
+      setPreviousQuizzes(quiz)
+      setQuizData(prev => ({
+        ...prev,
+        questions: quiz.questions && quiz.questions.length > 0 
+          ? quiz.questions 
+          : prev.questions
+      }));
+    } catch (error) {
+      console.error("Error:",error) 
+    }
+  }
 
   //logout the user 
   const logout = () => {
@@ -128,7 +136,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ user, setUser, isLoggedIn, setIsLoggedIn, logout, Isloading, updateUser, quizData, previousQuizzes, setQuizData, setPreviousQuizzes }}>
+    <AuthContext.Provider value={{ user, setUser, fetchQuizz, isLoggedIn, setIsLoggedIn, logout, Isloading, updateUser, quizData, previousQuizzes, setQuizData, setPreviousQuizzes }}>
       {children}
     </AuthContext.Provider>
   );

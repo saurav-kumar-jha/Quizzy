@@ -7,7 +7,7 @@ import {
   CircleOff,
   Circle,
   Upload,
-  Check
+  Check,RefreshCw
 } from 'lucide-react';
 import { useAuth } from '../context/AuthProvider';
 import api from '../util/authApi';
@@ -23,7 +23,7 @@ export default function TeacherDashboard() {
   const [generatedLink, setGeneratedLink] = useState('');
   const [copiedLink, setCopiedLink] = useState(false);
   const [showCreateQuizOpt, setShowCreateQuizOpt] = useState(true)
-  const { user, setUser, isLoggedIn, setIsLoggedIn, logout, updateUser, Isloading, quizData, previousQuizzes, setQuizData, setPreviousQuizzes } = useAuth();
+  const { user, setUser, isLoggedIn, setIsLoggedIn, logout, updateUser, fetchQuizz, Isloading, quizData, previousQuizzes, setQuizData, setPreviousQuizzes } = useAuth();
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
@@ -757,7 +757,20 @@ export default function TeacherDashboard() {
 
             {activeTab === 'quizzes' && (
               <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
-                <h2 className="text-3xl font-bold text-white mb-6">My Quizzes</h2>
+                 <div className="flex justify-between items-center mb-6">
+      <h2 className="text-2xl md:text-3xl font-bold text-white">
+        My Quizzes
+      </h2>
+
+      {/* Refresh Button */}
+      <button
+        onClick={fetchQuizz}
+        title="Refresh quizzes"
+        className="p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-purple-400 hover:text-purple-300 transition-all duration-300"
+      >
+        <RefreshCw className="w-5 h-5 md:w-6 md:h-6" />
+      </button>
+    </div>
                 <div className="space-y-4">
                   {
                     previousQuizzes.length == 0 ? (
