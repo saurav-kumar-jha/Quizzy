@@ -23,6 +23,7 @@ export default function AuthPages() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const [messageType, setMessageType] = useState('');
+  const [isDisabled, SetIsDisabled] = useState(false)
 
   useEffect(()=>{
     if(isLoggedIn){
@@ -42,6 +43,7 @@ export default function AuthPages() {
 
   const handleSubmit = async (e)=>{
     e.preventDefault()
+    SetIsDisabled(true)
     setLoading(true)
     try{
       const res = await api.post("/auth/login",{
@@ -85,10 +87,12 @@ export default function AuthPages() {
       setMessageType('error');
     }
     setLoading(false)
+    SetIsDisabled(false)
   }
 
   const handleRegister = async (e)=>{
     e.preventDefault()
+    SetIsDisabled(true)
     if(formData.password != formData.confirmPassword){
       setMessage('Please enter same password');
       setMessageType('error');
@@ -126,6 +130,7 @@ export default function AuthPages() {
       setMessageType('error');
     }
     setLoading(false)
+    SetIsDisabled(false)
 
   }
 
@@ -340,6 +345,7 @@ export default function AuthPages() {
             <button
               onClick={handleSubmit}
               className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-3 cursor-pointer rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 flex items-center justify-center group"
+              disabled={isDisabled}
             >
               {loading?(
                 <>
@@ -358,6 +364,7 @@ export default function AuthPages() {
             <button
               onClick={handleRegister}
               className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-3 cursor-pointer rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 flex items-center justify-center group"
+              disabled={isDisabled}
             >
               {loading?(
                 <>

@@ -38,7 +38,7 @@ export default function StudentQuizPage() {
       setLoading(false);
     };
     fetchQuiz();
-  }, [id]);
+  }, [id]); 
 
   useEffect(() => {
     if (hasStarted && !isSubmitted && timeLeft > 0) {
@@ -171,7 +171,7 @@ export default function StudentQuizPage() {
             </div>
 
             <div className="space-y-6">
-              <div>
+              {quizData.reqName && (<div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Your Name *</label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -183,8 +183,8 @@ export default function StudentQuizPage() {
                     placeholder="Enter your name"
                   />
                 </div>
-              </div>
-              <div>
+              </div>)}
+              {quizData.reqRoll && (<div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Your Roll no *</label>
                 <div className="relative">
                   <IdCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -196,8 +196,8 @@ export default function StudentQuizPage() {
                     placeholder="Enter your roll no"
                   />
                 </div>
-              </div>
-              <div>
+              </div>)}
+              {quizData.reqEmail && (<div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Your Email *</label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -209,7 +209,7 @@ export default function StudentQuizPage() {
                     placeholder="Enter your email"
                   />
                 </div>
-              </div>
+              </div>)}
 
               <div className="bg-slate-800/30 rounded-xl p-4 border border-slate-700">
                 <h3 className="text-white font-semibold mb-2">Instructions:</h3>
