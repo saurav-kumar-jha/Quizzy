@@ -5,7 +5,7 @@ import {
   Mail,
   IdCard
 } from 'lucide-react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import api from '../util/authApi';
 
 export default function StudentQuizPage() {
@@ -18,8 +18,11 @@ export default function StudentQuizPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showSubmitConfirm, setShowSubmitConfirm] = useState(false);
   const [quizData, setQuizData] = useState(null);
+  const [quizResData, setQuizResData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [Aloading, setaLoading] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -38,7 +41,7 @@ export default function StudentQuizPage() {
       setLoading(false);
     };
     fetchQuiz();
-  }, [id]); 
+  }, [id]);
 
   useEffect(() => {
     if (hasStarted && !isSubmitted && timeLeft > 0) {
@@ -104,10 +107,10 @@ export default function StudentQuizPage() {
     setShowSubmitConfirm(true);
   };
 
-  const finalAnswer = ()=>{
+  const finalAnswer = () => {
     const finalAns = {};
 
-    quizData.questions.forEach(q=>{
+    quizData.questions.forEach(q => {
       finalAns[q.id] = selectedAnswers[q.id] || "";
     })
 
@@ -115,22 +118,25 @@ export default function StudentQuizPage() {
   }
 
   const submitQuiz = async () => {
-    
+
     setShowSubmitConfirm(false);
+    setaLoading(true)
 
     try {
       const payload = {
         name: studentName,
-        email:email,
-        rollno:rollNo,
-        answers:finalAnswer()
+        email: email,
+        rollno: rollNo,
+        answers: finalAnswer()
       }
       // console.log("Payload:",payload)
-      const res = await api.post(`/student/${id}/submit` ,payload);
-      // console.log("Response:",res)
+      const res = await api.post(`/student/${id}/submit`, payload);
+      // console.log("Response:", res)
+      setQuizResData(res.data)
     } catch (error) {
       console.error('Error submitting quiz:', error);
-    }finally{
+    } finally {
+      setaLoading(false)
       setIsSubmitted(true);
     }
   };
@@ -157,7 +163,7 @@ export default function StudentQuizPage() {
             <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
               <BookOpen className="w-7 h-7 text-white" />
             </div>
-            <span className="text-3xl font-bold text-white">QuizMaster</span>
+            <span className="text-3xl font-bold text-white">Quizzy</span>
           </div>
 
           <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-purple-500/20 p-8">
@@ -261,7 +267,17 @@ export default function StudentQuizPage() {
                 <div className="text-2xl font-bold text-green-400">Submitted</div>
               </div>
             </div>
-            <p className="text-gray-400 text-sm">Your results will be shared soon.</p>
+            {/* <p className="text-gray-400 text-sm">Your results will be shared soon.</p> */}
+            <button
+              onClick={() => navigate('/result', {
+                state: {
+                  resultData: quizResData
+                }
+              })}
+              className="bg-gradient-to-r cursor-pointer from-purple-500 to-pink-500 text-white font-semibold py-3 px-6 rounded-xl hover:shadow-lg transition-all duration-300"
+            >
+              View Detailed Results
+            </button>
           </div>
         </div>
       </div>
@@ -287,11 +303,10 @@ export default function StudentQuizPage() {
                 <span className="text-white font-semibold">{getAnsweredCount()}/{quizData.questions.length}</span>
               </div>
 
-              <div className={`flex items-center space-x-2 px-4 py-2 rounded-xl border ${
-                timeLeft <= 60 ? 'bg-red-500/20 border-red-500/30' :
-                timeLeft <= 300 ? 'bg-yellow-500/20 border-yellow-500/30' :
-                'bg-green-500/20 border-green-500/30'
-              }`}>
+              <div className={`flex items-center space-x-2 px-4 py-2 rounded-xl border ${timeLeft <= 60 ? 'bg-red-500/20 border-red-500/30' :
+                  timeLeft <= 300 ? 'bg-yellow-500/20 border-yellow-500/30' :
+                    'bg-green-500/20 border-green-500/30'
+                }`}>
                 <Clock className={`w-5 h-5 ${getTimeColor()}`} />
                 <span className={`text-xl font-bold ${getTimeColor()}`}>
                   {formatTime(timeLeft)}
@@ -328,16 +343,14 @@ export default function StudentQuizPage() {
                     <button
                       key={optIndex}
                       onClick={() => handleAnswerSelect(question.id, option)}
-                      className={`w-full text-left p-4 cursor-pointer rounded-xl border transition-all duration-300 ${
-                        isSelected
+                      className={`w-full text-left p-4 cursor-pointer rounded-xl border transition-all duration-300 ${isSelected
                           ? 'bg-purple-500/20 border-purple-500 shadow-lg shadow-purple-500/20'
                           : 'bg-slate-800/50 border-slate-700 hover:border-purple-500/50 hover:bg-slate-800'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center space-x-3">
-                        <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
-                          isSelected ? 'border-purple-500 bg-purple-500' : 'border-slate-600'
-                        }`}>
+                        <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${isSelected ? 'border-purple-500 bg-purple-500' : 'border-slate-600'
+                          }`}>
                           {isSelected && <CheckCircle className="w-4 h-4 text-white" />}
                         </div>
                         <span className={`font-medium ${isSelected ? 'text-white' : 'text-gray-300'}`}>
@@ -367,8 +380,17 @@ export default function StudentQuizPage() {
               onClick={handleSubmitClick}
               className="flex-1 bg-gradient-to-r cursor-pointer from-green-500 to-emerald-500 hover:shadow-lg hover:shadow-green-500/50 text-white font-semibold py-3 rounded-xl flex items-center justify-center space-x-2"
             >
-              <Send className="w-5 h-5" />
-              <span>Submit Quiz</span>
+              {
+                Aloading ? (
+                  
+                <Loader className="w-5 h-5 animate-spin text-purple-400" />
+                ):(
+                  <>
+                    <Send className="w-5 h-5" />
+                    <span>Submit Quiz</span>
+                  </>
+                )
+              }              
             </button>
           </div>
 
