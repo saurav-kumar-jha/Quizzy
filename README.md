@@ -38,10 +38,9 @@ The project consists of two main parts:
 - Spring Boot
 - Spring Security
 - JWT Authentication
-- Maven
 
 ### Database
-- PostgreSQL / MySQL
+- PostgreSQL
 
 ---
 
@@ -105,41 +104,3 @@ The project consists of two main parts:
 
 ---
 
-## 🗄️ Database Structure
-
-### Main Entities:
-- User
-- Quiz
-- Question
-- Result
-
-### Relationships:
-- One Teacher → Many Quizzes  
-- One Quiz → Many Questions  
-- One Student → Many Results  
-
----
-
-## 💻 System Requirements
-
-### Hardware
-- Minimum 4GB RAM
-- Stable Internet Connection
-- Laptop/Desktop
-
-### Software
-- Node.js
-- Java 17+
-- PostgreSQL / MySQL
-- Modern Web Browser
-
----
-
-## 🚀 Installation Guide
-
-### 🔹 Backend Setup
-
-```bash
-cd backend
-mvn clean install
-mvn spring-boot:run
