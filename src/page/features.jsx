@@ -168,177 +168,177 @@ export default function FeaturesPage() {
     ? features 
     : features.filter(f => f.category === activeCategory);
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900  p-4 md:p-8">
-      <div className="max-w-7xl mx-auto pt-20">
-        {/* Header Section */}
-        <div className="text-center mb-12">
-          <div className="inline-block mb-4">
-            <span className="bg-purple-500/20 text-purple-300 px-4 py-2 rounded-full text-sm font-semibold border border-purple-500/30">
-              Powerful Features
-            </span>
+    return (
+      <div className="min-h-screen bg-slate-900  p-4 md:p-8">
+        <div className="max-w-7xl mx-auto pt-20">
+          {/* Header Section */}
+          <div className="text-center mb-12">
+            <div className="inline-block mb-4">
+              <span className="bg-blue-900/30 text-blue-300 px-4 py-2 rounded-full text-sm font-semibold border border-blue-500/30">
+                Powerful Features
+              </span>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+              Everything You Need to
+              <span className="text-blue-400"> Succeed</span>
+            </h1>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Quizzy provides a comprehensive suite of features designed to make online assessments simple, efficient, and engaging for both teachers and students.
+            </p>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-            Everything You Need to
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"> Succeed</span>
-          </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Quizzy provides a comprehensive suite of features designed to make online assessments simple, efficient, and engaging for both teachers and students.
-          </p>
-        </div>
-
-        {/* Category Filter */}
-        <div className="mb-12">
-          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-2">
-            <div className="flex flex-wrap gap-2 justify-center">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`flex items-center cursor-pointer space-x-2 px-4 py-2 rounded-xl font-semibold transition-all duration-300 ${
-                    activeCategory === category.id
-                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
-                      : 'text-gray-400 hover:text-white hover:bg-slate-800/50'
-                  }`}
-                >
-                  {category.icon}
-                  <span>{category.name}</span>
-                </button>
-              ))}
+  
+          {/* Category Filter */}
+          <div className="mb-12">
+            <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-2">
+              <div className="flex flex-wrap gap-2 justify-center">
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`flex items-center cursor-pointer space-x-2 px-4 py-2 rounded-xl font-semibold transition-all duration-300 ${
+                      activeCategory === category.id
+                        ? 'bg-blue-600 text-white shadow-lg'
+                        : 'text-gray-400 hover:text-white hover:bg-slate-800/50'
+                    }`}
+                  >
+                    {category.icon}
+                    <span>{category.name}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {filteredFeatures.map((feature, index) => (
-            <div
-              key={index}
-              className="group bg-slate-900/80 cursor-pointer backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-6 hover:border-purple-500/50 transition-all duration-300 hover:transform hover:-translate-y-2"
-            >
-              <div className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                <div className="text-white">
-                  {feature.icon}
+  
+          {/* Features Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {filteredFeatures.map((feature, index) => (
+              <div
+                key={index}
+                className="group bg-slate-900/80 cursor-pointer backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-6 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:-translate-y-2"
+              >
+                <div className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="text-white">
+                    {feature.icon}
+                  </div>
                 </div>
+                <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
+                <p className="text-gray-400 leading-relaxed">{feature.description}</p>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
-              <p className="text-gray-400 leading-relaxed">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Key Highlights Section */}
-        <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-3xl border border-purple-500/20 p-8 md:p-12 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
-            Why Choose Quizzy?
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
-                100%
+            ))}
+          </div>
+  
+          {/* Key Highlights Section */}
+          <div className="bg-blue-900/20 rounded-3xl border border-blue-500/20 p-8 md:p-12 mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
+              Why Choose Quizzy?
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="text-5xl font-bold text-blue-400 mb-2">
+                  100%
+                </div>
+                <p className="text-gray-300">Free Forever</p>
               </div>
-              <p className="text-gray-300">Free Forever</p>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
-                24/7
+              <div className="text-center">
+                <div className="text-5xl font-bold text-blue-400 mb-2">
+                  24/7
+                </div>
+                <p className="text-gray-300">Available Access</p>
               </div>
-              <p className="text-gray-300">Available Access</p>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
-                ∞
+              <div className="text-center">
+                <div className="text-5xl font-bold text-blue-400 mb-2">
+                  ∞
+                </div>
+                <p className="text-gray-300">Unlimited Quizzes</p>
               </div>
-              <p className="text-gray-300">Unlimited Quizzes</p>
-            </div>
-            <div className="text-center">
-              <div className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
-                <Zap className="w-12 h-12 mx-auto" />
+              <div className="text-center">
+                <div className="text-5xl font-bold text-blue-400 mb-2">
+                  <Zap className="w-12 h-12 mx-auto" />
+                </div>
+                <p className="text-gray-300">Instant Results</p>
               </div>
-              <p className="text-gray-300">Instant Results</p>
             </div>
           </div>
-        </div>
-
-        {/* Core Features Showcase */}
-        <div className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
-            Core Capabilities
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
-              <h3 className="text-2xl font-bold text-white mb-4 flex items-center space-x-3">
-                <Users className="w-8 h-8 text-purple-400" />
-                <span>For Teachers</span>
-              </h3>
-              <ul className="space-y-3 text-gray-300">
-                <li className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>Create unlimited quizzes with custom questions</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>Generate unique shareable links instantly</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>View detailed student performance analytics</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>Export results to CSV for records</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>Control quiz access with open/close status</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
-              <h3 className="text-2xl font-bold text-white mb-4 flex items-center space-x-3">
-                <Award className="w-8 h-8 text-pink-400" />
-                <span>For Students</span>
-              </h3>
-              <ul className="space-y-3 text-gray-300">
-                <li className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>Take quizzes from anywhere, anytime</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>Get instant results upon submission</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>User-friendly interface for smooth experience</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>Timed quizzes with countdown timer</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>Clear answer submission and review</span>
-                </li>
-              </ul>
+  
+          {/* Core Features Showcase */}
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
+              Core Capabilities
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-8">
+                <h3 className="text-2xl font-bold text-white mb-4 flex items-center space-x-3">
+                  <Users className="w-8 h-8 text-blue-400" />
+                  <span>For Teachers</span>
+                </h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Create unlimited quizzes with custom questions</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Generate unique shareable links instantly</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>View detailed student performance analytics</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Export results to CSV for records</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Control quiz access with open/close status</span>
+                  </li>
+                </ul>
+              </div>
+  
+              <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-8">
+                <h3 className="text-2xl font-bold text-white mb-4 flex items-center space-x-3">
+                  <Award className="w-8 h-8 text-blue-400" />
+                  <span>For Students</span>
+                </h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Take quizzes from anywhere, anytime</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Get instant results upon submission</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>User-friendly interface for smooth experience</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Timed quizzes with countdown timer</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Clear answer submission and review</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="text-center bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl p-12 shadow-2xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Get Started?
-          </h2>
-          <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of educators who are already using Quizzy to create engaging assessments
-          </p>
-          <button onClick={()=>navigate("/dashboard?tab=create")} className="bg-white cursor-pointer text-purple-600 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
-            Create Your First Quiz Now
-          </button>
+  
+          {/* CTA Section */}
+          <div className="text-center bg-blue-600 rounded-3xl p-12 shadow-2xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Ready to Get Started?
+            </h2>
+            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+              Join thousands of educators who are already using Quizzy to create engaging assessments
+            </p>
+            <button onClick={()=>navigate("/dashboard?tab=create")} className="bg-white cursor-pointer text-blue-600 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              Create Your First Quiz Now
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
 }

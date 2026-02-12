@@ -131,18 +131,18 @@ export default function HowItWorksPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4 md:p-8">
+    <div className="min-h-screen bg-slate-900 p-4 md:p-8">
       <div className="max-w-7xl mx-auto pt-20">
         {/* Header Section */}
         <div className="text-center mb-16">
           <div className="inline-block mb-4">
-            <span className="bg-purple-500/20 text-purple-300 px-4 py-2 rounded-full text-sm font-semibold border border-purple-500/30">
+            <span className="bg-blue-900/30 text-blue-300 px-4 py-2 rounded-full text-sm font-semibold border border-blue-500/30">
               Simple & Effective Process
             </span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
             How Quizzy
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"> Works</span>
+            <span className="text-blue-400"> Works</span>
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             From creating quizzes to viewing results - everything is automated and easy. Follow these 9 simple steps to get started.
@@ -153,7 +153,7 @@ export default function HowItWorksPage() {
         <div className="mb-16 hidden lg:block">
           <div className="relative">
             {/* Connection Lines */}
-            {/* <div className="absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 opacity-20"></div> */}
+            {/* <div className="absolute top-24 left-0 right-0 h-1 bg-blue-600 opacity-20"></div> */}
             
             <div className="grid grid-cols-9 gap-2">
               {steps.map((step, index) => (
@@ -182,7 +182,7 @@ export default function HowItWorksPage() {
           </div>
 
           {/* Active Step Details */}
-          <div className="mt-8 bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
+          <div className="mt-8 bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-8">
             <div className="flex items-start space-x-6">
               <div className={`w-20 h-20 bg-gradient-to-r ${steps[activeStep].gradient} rounded-2xl flex items-center justify-center flex-shrink-0`}>
                 <div className="text-white">
@@ -211,7 +211,7 @@ export default function HowItWorksPage() {
         <div className="lg:hidden mb-16">
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-500 via-pink-500 to-purple-500 opacity-20"></div>
+            <div className="absolute left-8 top-0 bottom-0 w-1 bg-blue-600 opacity-20"></div>
             
             <div className="space-y-8">
               {steps.map((step, index) => (
@@ -222,9 +222,9 @@ export default function HowItWorksPage() {
                     </div>
                   </div>
                   
-                  <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-6">
+                  <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-6">
                     <div className="flex items-center space-x-3 mb-3">
-                      <span className="text-purple-400 font-bold">Step {index+1}</span>
+                      <span className="text-blue-400 font-bold">Step {index+1}</span>
                       <span className={`px-2 py-1 rounded-full text-xs border ${
                         step.role === 'teacher'
                           ? 'bg-blue-500/20 text-blue-300 border-blue-500/30'
@@ -250,7 +250,7 @@ export default function HowItWorksPage() {
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {/* Teacher Journey */}
-            <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
+            <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-8">
               <div className="flex items-center space-x-3 mb-6">
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
                   <Users className="w-6 h-6 text-white" />
@@ -260,8 +260,8 @@ export default function HowItWorksPage() {
               <div className="space-y-4">
                 {teacherSteps.map((step) => (
                   <div key={step.id} className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-purple-300 font-bold text-sm">{step.number}</span>
+                    <div className="w-8 h-8 bg-blue-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-blue-300 font-bold text-sm">{step.number}</span>
                     </div>
                     <div>
                       <h4 className="text-white font-semibold mb-1">{step.title}</h4>
@@ -273,7 +273,7 @@ export default function HowItWorksPage() {
             </div>
 
             {/* Student Journey */}
-            <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
+            <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-8">
               <div className="flex items-center space-x-3 mb-6">
                 <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
                   <BookOpen className="w-6 h-6 text-white" />
@@ -313,8 +313,8 @@ export default function HowItWorksPage() {
               <h3 className="text-xl font-bold text-white mb-2">100% Automated</h3>
               <p className="text-gray-400">No manual grading or result calculation needed</p>
             </div>
-            <div className="bg-gradient-to-br from-purple-500/10 cursor-pointer to-pink-500/10 rounded-2xl p-6 border border-purple-500/20">
-              <Clock className="w-12 h-12 text-purple-400 mb-4" />
+            <div className="bg-gradient-to-br from-blue-600/10 cursor-pointer to-blue-500/10 rounded-2xl p-6 border border-blue-500/20">
+              <Clock className="w-12 h-12 text-blue-400 mb-4" />
               <h3 className="text-xl font-bold text-white mb-2">Instant Results</h3>
               <p className="text-gray-400">Students get feedback immediately after submission</p>
             </div>
@@ -335,7 +335,7 @@ export default function HowItWorksPage() {
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-slate-900/80 backdrop-blur-xl cursor-pointer rounded-2xl shadow-xl border border-purple-500/20 overflow-hidden"
+                className="bg-slate-900/80 backdrop-blur-xl cursor-pointer rounded-2xl shadow-xl border border-blue-500/20 overflow-hidden"
               >
                 <button
                   onClick={() => setExpandedFAQ(expandedFAQ === index ? null : index)}
@@ -343,9 +343,9 @@ export default function HowItWorksPage() {
                 >
                   <span className="text-lg font-semibold text-white">{faq.question}</span>
                   {expandedFAQ === index ? (
-                    <ChevronUp className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                    <ChevronUp className="w-5 h-5 text-blue-400 flex-shrink-0" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                    <ChevronDown className="w-5 h-5 text-blue-400 flex-shrink-0" />
                   )}
                 </button>
                 {expandedFAQ === index && (
@@ -359,15 +359,15 @@ export default function HowItWorksPage() {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl p-12 shadow-2xl">
+        <div className="text-center bg-blue-600 rounded-3xl p-12 shadow-2xl">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Experience It Yourself?
           </h2>
-          <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             Join thousands of educators who have simplified their assessment process with Quizzy
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button onClick={()=>navigate("/dashboard?tab=create")} className="bg-white text-purple-600 cursor-pointer px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2">
+            <button onClick={()=>navigate("/dashboard?tab=create")} className="bg-white text-blue-600 cursor-pointer px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2">
               <span>Get Started Free</span>
               <ArrowRight className="w-5 h-5" />
             </button>

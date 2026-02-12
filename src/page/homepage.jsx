@@ -77,30 +77,30 @@ export default function QuizMasterHomepage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-slate-900">
     {/* Hero Section */}
       <section id="home" className="pt-32 pb-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="inline-block">
-                <span className="bg-purple-500/20 text-purple-300 px-4 py-2 rounded-full text-sm font-semibold border border-purple-500/30">
+                <span className="bg-blue-900/30 text-blue-300 px-4 py-2 rounded-full text-sm font-semibold border border-blue-500/30">
                   100% Free Forever
                 </span>
               </div>
               <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
                 Create Quizzes.
-                <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"> Share Instantly.</span>
+                <span className="text-blue-400"> Share Instantly.</span>
               </h1>
               <p className="text-xl text-gray-300 leading-relaxed">
                 Empower education with our completely free quiz platform. Designed by educators, for educators. Create engaging assessments, share them with a simple link, and track student progress—all without spending a penny.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 flex items-center justify-center group cursor-pointer" onClick={()=>navigate("/dashboard?tab=create")} >
+                <button className="bg-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 flex items-center justify-center group cursor-pointer" onClick={()=>navigate("/dashboard?tab=create")} >
                   Start Creating Free
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
-                <button className="border-2 border-purple-400 text-purple-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-purple-400/10 transition-all duration-300">
+                <button className="border-2 border-blue-400 text-blue-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-400/10 transition-all duration-300">
                   Watch Demo
                 </button>
               </div>
@@ -120,19 +120,19 @@ export default function QuizMasterHomepage() {
               </div>
             </div>
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl blur-3xl opacity-20 animate-pulse"></div>
-              <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-3xl border border-purple-500/20 shadow-2xl">
+              <div className="absolute inset-0 bg-blue-600 rounded-3xl blur-3xl opacity-20 animate-pulse"></div>
+              <div className="relative bg-slate-800 p-8 rounded-3xl border border-blue-500/20 shadow-2xl">
                 <img 
                   src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop" 
                   alt="Students collaborating" 
                   className="rounded-2xl w-full h-auto shadow-lg"
                 />
-                <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-purple-500 to-pink-500 p-6 rounded-2xl shadow-2xl">
+                <div className="absolute -bottom-6 -right-6 bg-blue-600 p-6 rounded-2xl shadow-2xl">
                   <div className="flex items-center space-x-3">
                     <TrendingUp className="w-8 h-8 text-white" />
                     <div>
                       <div className="text-2xl font-bold text-white">98%</div>
-                      <div className="text-sm text-purple-100">Satisfaction Rate</div>
+                      <div className="text-sm text-blue-100">Satisfaction Rate</div>
                     </div>
                   </div>
                 </div>
@@ -143,7 +143,7 @@ export default function QuizMasterHomepage() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-4 bg-slate-900/50">
+      <section id="features" className="py-20 px-4 bg-slate-800">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -157,9 +157,9 @@ export default function QuizMasterHomepage() {
             {features.map((feature, index) => (
               <div 
                 key={index}
-                className="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-2xl border border-purple-500/20 hover:border-purple-500/50 transition-all duration-300 hover:transform hover:-translate-y-2 group"
+                className="bg-slate-900 p-6 rounded-2xl border border-blue-500/20 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:-translate-y-2 group"
               >
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
@@ -181,21 +181,21 @@ export default function QuizMasterHomepage() {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto text-2xl font-bold text-white">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold text-white">
                 1
               </div>
               <h3 className="text-2xl font-bold text-white">Create Quiz</h3>
               <p className="text-gray-400">Add questions with our intuitive editor. Multiple choice, true/false, or short answer—you choose!</p>
             </div>
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto text-2xl font-bold text-white">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold text-white">
                 2
               </div>
               <h3 className="text-2xl font-bold text-white">Share Link</h3>
               <p className="text-gray-400">Get a unique link and share it with your students via email, messaging apps, or your LMS.</p>
             </div>
             <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto text-2xl font-bold text-white">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold text-white">
                 3
               </div>
               <h3 className="text-2xl font-bold text-white">Track Results</h3>
@@ -206,7 +206,7 @@ export default function QuizMasterHomepage() {
       </section>
 
       {/* Used By Section */}
-      <section className="py-20 px-4 bg-slate-900/50">
+      <section className="py-20 px-4 bg-slate-800">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Trusted By Educators Worldwide
@@ -216,7 +216,7 @@ export default function QuizMasterHomepage() {
             {usedBy.map((user, index) => (
               <div 
                 key={index}
-                className="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/50 transition-all duration-300"
+                className="bg-slate-900 p-6 rounded-xl border border-blue-500/20 hover:border-blue-500/50 transition-all duration-300"
               >
                 <p className="text-white font-semibold">{user}</p>
               </div>
@@ -238,7 +238,7 @@ export default function QuizMasterHomepage() {
             {testimonial.map((testimonial, index) => (
               <div 
                 key={index}
-                className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-2xl border border-purple-500/20 hover:border-purple-500/50 transition-all duration-300 space-y-4"
+                className="bg-slate-800 p-8 rounded-2xl border border-blue-500/20 hover:border-blue-500/50 transition-all duration-300 space-y-4"
               >
                 <div className="flex space-x-1">
                   {[...Array(testimonial.rating)].map((_, i) => (
@@ -247,7 +247,7 @@ export default function QuizMasterHomepage() {
                 </div>
                 <p className="text-gray-300 italic">"{testimonial.testimonial}"</p>
                 <div className="flex items-center space-x-3 pt-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">
+                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
                     {getAvatar(testimonial.name)}
                   </div>
                   <div>
@@ -264,14 +264,14 @@ export default function QuizMasterHomepage() {
       {/* CTA Section */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-12 rounded-3xl shadow-2xl">
+          <div className="bg-blue-600 p-12 rounded-3xl shadow-2xl">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Ready to Transform Your Teaching?
             </h2>
-            <p className="text-xl text-purple-100 mb-8">
+            <p className="text-xl text-blue-100 mb-8">
               Join thousands of educators who are already creating amazing quizzes for free
             </p>
-            <button className="bg-white text-purple-600 px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer" onClick={()=>navigate("/dashboard?tab=create")}>
+            <button className="bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer" onClick={()=>navigate("/dashboard?tab=create")}>
               Create Your First Quiz Now
             </button>
           </div>

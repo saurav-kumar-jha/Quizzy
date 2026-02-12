@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {
-  BookOpen, Plus, List, User, LogOut, BarChart,
-  Share2, Copy, CheckCircle, X, Trash2, Edit,
-  Facebook, Twitter, Linkedin, Mail, Clock, Users,
-  Loader,
-  CircleOff,
-  Circle,
-  Upload,
-  Check,RefreshCw
-} from 'lucide-react';
+import { BookOpen, Plus, List, User, LogOut, BarChart, Share2, Copy, CheckCircle, X, Trash2, Edit, Facebook, Twitter, Linkedin, Mail, Clock, Users, Loader, CircleOff, Circle, Upload, Check, RefreshCw } from 'lucide-react';
 import { useAuth } from '../context/AuthProvider';
 import api from '../util/authApi';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import "../App.css"
 
 export default function TeacherDashboard() {
   const [activeTab, setActiveTab] = useState('profile');
@@ -23,7 +15,7 @@ export default function TeacherDashboard() {
   const [generatedLink, setGeneratedLink] = useState('');
   const [copiedLink, setCopiedLink] = useState(false);
   const [showCreateQuizOpt, setShowCreateQuizOpt] = useState(true)
-  const { user, setUser, isLoggedIn, setIsLoggedIn, logout, updateUser, fetchQuizz, Isloading, quizData, previousQuizzes, setQuizData, setPreviousQuizzes } = useAuth();
+  const { user, setUser, isLoggedIn, logout, updateUser, fetchQuizz, Isloading, quizData, previousQuizzes, setQuizData, setPreviousQuizzes } = useAuth();
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
@@ -32,6 +24,7 @@ export default function TeacherDashboard() {
   const [editData, setEditData] = useState({ name: '', subject: '', avatar: '' });
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [avatarFile, setAvatarFile] = useState(null);
+  const [isRotating, setIsRotating] = useState(false);
 
   useEffect(() => {
     const tabfromUrl = searchParams.get('tab')
@@ -48,6 +41,8 @@ export default function TeacherDashboard() {
       navigate("/auth")
     }
   }, [])
+
+  // console.log(previousQuizzes)
 
   const teacherProfile = {
     name: user.name,
@@ -102,6 +97,7 @@ export default function TeacherDashboard() {
           "Authorization": `Bearer ${user.token}`
         }
       })
+      fetchQuizz()
       setActiveTab("quizzes")
       setSearchParams('tab=quizzes')
       // console.log("res:",res)
@@ -288,9 +284,17 @@ export default function TeacherDashboard() {
     return res.data?.secure_url;
   }
 
+  const handleRefresh = ()=>{
+    setIsRotating(true);
+      fetchQuizz(); // your original function
+
+  
+    setIsRotating(false);
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      <nav className="bg-slate-900/95 backdrop-blur-lg shadow-lg border-b border-purple-500/20">
+    <div className="min-h-screen bg-slate-900">
+      <nav className="bg-slate-900/95 backdrop-blur-lg shadow-lg border-b border-blue-500/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
@@ -311,7 +315,7 @@ export default function TeacherDashboard() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid lg:grid-cols-4 gap-6">
           <div className="lg:col-span-1">
-            <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-6 sticky top-8">
+            <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-6 sticky top-8">
               <div className="space-y-2">
                 <button
                   onClick={() => {
@@ -319,7 +323,7 @@ export default function TeacherDashboard() {
                     setSearchParams('tab=profile')
                   }}
                   className={`w-full flex items-center cursor-pointer space-x-3 px-4 py-3 rounded-xl transition-all duration-300 ${activeTab === 'profile'
-                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                    ? 'bg-blue-600 text-white shadow-lg'
                     : 'text-gray-400 hover:bg-slate-800/50 hover:text-white'
                     }`}
                 >
@@ -334,7 +338,7 @@ export default function TeacherDashboard() {
                     setShowCreateQuiz(true);
                   }}
                   className={`w-full flex items-center cursor-pointer space-x-3 px-4 py-3 rounded-xl transition-all duration-300 ${activeTab === 'create'
-                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                    ? 'bg-blue-600 text-white shadow-lg'
                     : 'text-gray-400 hover:bg-slate-800/50 hover:text-white'
                     }`}
                 >
@@ -348,7 +352,7 @@ export default function TeacherDashboard() {
                     setSearchParams('tab=quizzes')
                   }}
                   className={`w-full flex items-center cursor-pointer space-x-3 px-4 py-3 rounded-xl transition-all duration-300 ${activeTab === 'quizzes'
-                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                    ? 'bg-blue-600 text-white shadow-lg'
                     : 'text-gray-400 hover:bg-slate-800/50 hover:text-white'
                     }`}
                 >
@@ -362,7 +366,7 @@ export default function TeacherDashboard() {
                     setSearchParams('tab=results')
                   }}
                   className={`w-full flex items-center cursor-pointer space-x-3 px-4 py-3 rounded-xl transition-all duration-300 ${activeTab === 'results'
-                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                    ? 'bg-blue-600 text-white shadow-lg'
                     : 'text-gray-400 hover:bg-slate-800/50 hover:text-white'
                     }`}
                 >
@@ -376,15 +380,15 @@ export default function TeacherDashboard() {
           <div className="lg:col-span-3">
             {activeTab === 'profile' && (
               <div className="space-y-6">
-                <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
+                <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-8">
                   <div className="flex items-center space-x-6 mb-8">
                     {
                       teacherProfile.profile ? (
-                        <div className="w-24 h-24 rounded-full overflow-hidden border border-purple-500/30 flex items-center justify-center">
+                        <div className="w-24 h-24 rounded-full overflow-hidden border border-blue-500/30 flex items-center justify-center">
                           <img src={teacherProfile.profile} alt={teacherProfile.name} className='w-full h-full object-cover transition-transform duration-300 hover:scale-105' />
                         </div>
                       ) : (
-                        <div className="w-24 h-24 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-3xl font-bold">
+                        <div className="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center text-white text-3xl font-bold">
                           {teacherProfile.avatar}
                         </div>
                       )
@@ -394,7 +398,7 @@ export default function TeacherDashboard() {
                       <h2 className="text-3xl font-bold text-white mb-2">{teacherProfile.name}</h2>
                       <p className="text-gray-400">{teacherProfile.email}</p>
                       <div className="flex items-center space-x-4 mt-2">
-                        <span className="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm">
+                        <span className="bg-blue-900/30 text-blue-300 px-3 py-1 rounded-full text-sm">
                           {teacherProfile.role}
                         </span>
                         <span className="text-gray-400 text-sm">Joined {teacherProfile.joinDate}</span>
@@ -402,7 +406,7 @@ export default function TeacherDashboard() {
                     </div>
                     <button
                       onClick={handleEditClick}
-                      className="flex items-center cursor-pointer space-x-2 bg-blue-600 hover:bg-blue-600 text-white px-4 py-2 rounded-xl transition-all duration-300"
+                      className="flex items-center cursor-pointer space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl transition-all duration-300"
                     >
                       <Edit className="w-5 h-5" />
                       <span>Edit</span>
@@ -417,26 +421,26 @@ export default function TeacherDashboard() {
                   </div>
 
                   <div className="grid md:grid-cols-3 gap-6">
-                    <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-6 border border-purple-500/20">
+                    <div className="bg-blue-900/20 rounded-xl p-6 border border-blue-500/20">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-gray-400">Total Quizzes</span>
-                        <List className="w-5 h-5 text-purple-400" />
+                        <List className="w-5 h-5 text-blue-400" />
                       </div>
                       <div className="text-3xl font-bold text-white">{teacherProfile.totalQuizzes}</div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-6 border border-purple-500/20">
+                    <div className="bg-blue-900/20 rounded-xl p-6 border border-blue-500/20">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-gray-400">Total Students</span>
-                        <Users className="w-5 h-5 text-purple-400" />
+                        <Users className="w-5 h-5 text-blue-400" />
                       </div>
                       <div className="text-3xl font-bold text-white">{teacherProfile.totalStudents}</div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-6 border border-purple-500/20">
+                    <div className="bg-blue-900/20 rounded-xl p-6 border border-blue-500/20">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-gray-400">Subject</span>
-                        <BookOpen className="w-5 h-5 text-purple-400" />
+                        <BookOpen className="w-5 h-5 text-blue-400" />
                       </div>
                       <div className="text-lg font-bold text-white">{teacherProfile.subject}</div>
                     </div>
@@ -450,7 +454,7 @@ export default function TeacherDashboard() {
                         <input
                           type="text"
                           value={teacherProfile.name}
-                          className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                          className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                           readOnly
                         />
                       </div>
@@ -459,7 +463,7 @@ export default function TeacherDashboard() {
                         <input
                           type="email"
                           value={teacherProfile.email}
-                          className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                          className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                           readOnly
                         />
                       </div>
@@ -468,7 +472,7 @@ export default function TeacherDashboard() {
                         <input
                           type="text"
                           value={teacherProfile.role}
-                          className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                          className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                           readOnly
                         />
                       </div>
@@ -481,7 +485,7 @@ export default function TeacherDashboard() {
             {/* Edit Profile Modal */}
             {showEdit && (
               <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center px-4 py-2 z-50">
-                <div className="bg-slate-900 rounded-3xl shadow-2xl border border-purple-500/20 p-8 max-w-2xl w-full">
+                <div className="bg-slate-900 rounded-3xl shadow-2xl border border-blue-500/20 p-8 max-w-2xl w-full">
                   <div className="flex justify-between items-center mb-6">
                     <h3 className="text-2xl font-bold text-white">Edit Profile</h3>
                     <button
@@ -497,7 +501,7 @@ export default function TeacherDashboard() {
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-1.5">Profile Picture</label>
                       <div className="flex items-center space-x-6">
-                        <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-3xl font-bold overflow-hidden">
+                        <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center text-white text-3xl font-bold overflow-hidden">
                           {avatarPreview ? (
                             <img src={avatarPreview} alt="Avatar preview" className="w-full h-full object-cover" />
                           ) : (
@@ -505,7 +509,7 @@ export default function TeacherDashboard() {
                           )}
                         </div>
                         <div>
-                          <label className="flex items-center space-x-2 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-xl cursor-pointer transition-all duration-300">
+                          <label className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl cursor-pointer transition-all duration-300">
                             <Upload className="w-5 h-5" />
                             <span>Upload New Photo</span>
                             <input
@@ -527,7 +531,7 @@ export default function TeacherDashboard() {
                         type="text"
                         value={editData.name}
                         onChange={(e) => setEditData({ ...editData, name: e.target.value })}
-                        className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                        className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                         placeholder="Enter your full name"
                       />
                     </div>
@@ -563,7 +567,7 @@ export default function TeacherDashboard() {
                         type="text"
                         value={editData.subject}
                         onChange={(e) => setEditData({ ...editData, subject: e.target.value })}
-                        className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                        className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                         placeholder="Enter your subject"
                       />
                     </div>
@@ -573,7 +577,7 @@ export default function TeacherDashboard() {
                       <button
                         onClick={handleUpdateProfile}
                         disabled={isUpdating}
-                        className="flex-1 bg-gradient-to-r cursor-pointer from-purple-500 to-pink-500 text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                        className="flex-1 bg-blue-600 cursor-pointer text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                       >
                         {isUpdating ? (
                           <>
@@ -603,7 +607,7 @@ export default function TeacherDashboard() {
             {/* Logout Confirmation Modal */}
             {showLogoutConfirm && (
               <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-                <div className="bg-slate-900 rounded-3xl shadow-2xl border border-purple-500/20 p-8 max-w-md w-full">
+                <div className="bg-slate-900 rounded-3xl shadow-2xl border border-blue-500/20 p-8 max-w-md w-full">
                   <div className="text-center mb-6">
                     <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <LogOut className="w-8 h-8 text-red-400" />
@@ -631,7 +635,7 @@ export default function TeacherDashboard() {
             )}
 
             {activeTab === 'create' && showCreateQuiz && (
-              <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
+              <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-8">
                 <h2 className="text-3xl font-bold text-white mb-6">Create New Quiz</h2>
                 {showCreateQuizOpt && (
                   <div className="space-y-4 mb-8">
@@ -642,7 +646,7 @@ export default function TeacherDashboard() {
                         type="text"
                         value={quizData.title}
                         onChange={(e) => setQuizData({ ...quizData, title: e.target.value })}
-                        className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                        className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                         placeholder="Enter quiz title"
                       />
                     </div>
@@ -652,7 +656,7 @@ export default function TeacherDashboard() {
                       <textarea
                         value={quizData.description}
                         onChange={(e) => setQuizData({ ...quizData, description: e.target.value })}
-                        className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                        className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                         placeholder="Brief description of the quiz"
                         rows="3"
                       />
@@ -664,7 +668,7 @@ export default function TeacherDashboard() {
                         type="number"
                         value={quizData.duration}
                         onChange={(e) => setQuizData({ ...quizData, duration: e.target.value })}
-                        className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20"
+                        className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                         placeholder="30"
                       />
                     </div>
@@ -684,7 +688,7 @@ export default function TeacherDashboard() {
                             onClick={() =>
                               setQuizData(prev => ({ ...prev, reqName: !prev.reqName }))
                             }
-                            className={`w-12 h-6 flex items-center cursor-pointer rounded-full p-1 transition-all ${quizData.reqName ? 'bg-purple-500' : 'bg-gray-600'
+                            className={`w-12 h-6 flex items-center cursor-pointer rounded-full p-1 transition-all ${quizData.reqName ? 'bg-blue-600' : 'bg-gray-600'
                               }`}
                           >
                             <span
@@ -702,7 +706,7 @@ export default function TeacherDashboard() {
                             onClick={() =>
                               setQuizData(prev => ({ ...prev, reqEmail: !prev.reqEmail }))
                             }
-                            className={`w-12 h-6 flex items-center cursor-pointer rounded-full p-1 transition-all ${quizData.reqEmail ? 'bg-purple-500' : 'bg-gray-600'
+                            className={`w-12 h-6 flex items-center cursor-pointer rounded-full p-1 transition-all ${quizData.reqEmail ? 'bg-blue-600' : 'bg-gray-600'
                               }`}
                           >
                             <span
@@ -720,7 +724,7 @@ export default function TeacherDashboard() {
                             onClick={() =>
                               setQuizData(prev => ({ ...prev, reqRoll: !prev.reqRoll }))
                             }
-                            className={`w-12 h-6 flex items-center cursor-pointer rounded-full p-1 transition-all ${quizData.reqRoll ? 'bg-purple-500' : 'bg-gray-600'
+                            className={`w-12 h-6 flex items-center cursor-pointer rounded-full p-1 transition-all ${quizData.reqRoll ? 'bg-blue-600' : 'bg-gray-600'
                               }`}
                           >
                             <span
@@ -739,7 +743,7 @@ export default function TeacherDashboard() {
 
 
                     {/* Submit btn  */}
-                    <button onClick={handleCreateQuiz} className="w-full bg-purple-500 cursor-pointer flex items-center justify-center hover:bg-purple-600 text-white font-semibold py-3 rounded-xl transition-all duration-300">
+                    <button onClick={handleCreateQuiz} className="w-full bg-blue-600 cursor-pointer flex items-center justify-center hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-all duration-300">
                       {
                         loading ? (
                           <>
@@ -756,21 +760,21 @@ export default function TeacherDashboard() {
             )}
 
             {activeTab === 'quizzes' && (
-              <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
-                 <div className="flex justify-between items-center mb-6">
-      <h2 className="text-2xl md:text-3xl font-bold text-white">
-        My Quizzes
-      </h2>
+              <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-8">
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-2xl md:text-3xl font-bold text-white">
+                    My Quizzes
+                  </h2>
 
-      {/* Refresh Button */}
-      <button
-        onClick={fetchQuizz}
-        title="Refresh quizzes"
-        className="p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-purple-400 hover:text-purple-300 transition-all duration-300"
-      >
-        <RefreshCw className="w-5 h-5 md:w-6 md:h-6" />
-      </button>
-    </div>
+                  {/* Refresh Button */}
+                  <button
+                    onClick={handleRefresh}
+                    title="Refresh quizzes"
+                    className="p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-blue-400 hover:text-blue-300 transition-all duration-300 cursor-pointer "
+                  >
+                    <RefreshCw className={`w-5 h-5 md:w-6 md:h-6 ${isRotating ? "rotate-twice" : ""}`} />
+                  </button>
+                </div>
                 <div className="space-y-4">
                   {
                     previousQuizzes.length == 0 ? (
@@ -782,14 +786,14 @@ export default function TeacherDashboard() {
                             setActiveTab('create');
                             setShowCreateQuiz(true);
                           }}
-                          className="w-full bg-purple-500 hover:bg-purple-600 text-white font-semibold py-3 rounded-xl transition-all duration-300"
+                          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-all duration-300"
                         >
                           Create Quizz
                         </button>
                       </>
                     ) : (
                       previousQuizzes.map((quiz) => (
-                        <div key={quiz.id} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-purple-500/50 transition-all">
+                        <div key={quiz.id} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-blue-500/50 transition-all">
                           <div className="flex justify-between items-start mb-4">
                             <div>
                               <h3 className="text-xl font-bold text-white mb-2 hover:underline cursor-pointer hover:text-gray-400" onClick={() => navigate(`/quiz/${quiz.id}`)}>{quiz.name}</h3>
@@ -812,7 +816,7 @@ export default function TeacherDashboard() {
                               </div>
                             </div>
                             <div className="text-right flex justify-center items-center">
-                              {/* <div className="text-2xl font-bold text-purple-400">{quiz.avgScore}%</div>
+                              {/* <div className="text-2xl font-bold text-blue-400">{quiz.avgScore}%</div>
                               <div className="text-sm text-gray-400">Avg Score</div> */}
                               <p className="text-lg text-gray-400 mr-2">Status:</p>
                               {
@@ -830,7 +834,7 @@ export default function TeacherDashboard() {
                               onClick={() => {
                                 handleGenerateQuizLink(quiz.id)
                               }}
-                              className="flex-1 bg-purple-500 hover:bg-purple-600 cursor-pointer text-white font-semibold py-2 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2"
+                              className="flex-1 bg-blue-600 hover:bg-blue-700 cursor-pointer text-white font-semibold py-2 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2"
                             >
                               <Share2 className="w-4 h-4" />
                               <span>Share</span>
@@ -861,22 +865,22 @@ export default function TeacherDashboard() {
             )}
 
             {activeTab === 'results' && (
-              <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
+              <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-8">
                 <h2 className="text-3xl font-bold text-white mb-6">Quiz Results & Analytics</h2>
                 <div className="space-y-6">
                   {previousQuizzes.map((quiz) => (
-                    <div key={quiz.id} className="bg-gradient-to-br from-slate-800/50 to-slate-800/30 rounded-xl p-6 border border-slate-700">
+                    <div key={quiz.id} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
                       <h3 className="text-xl font-bold text-white mb-4">{quiz.name}</h3>
                       {/* <div className="grid md:grid-cols-3 gap-4">
-                        <div className="bg-purple-500/10 rounded-lg p-4 border border-purple-500/20">
+                        <div className="bg-blue-900/20 rounded-lg p-4 border border-blue-500/20">
                           <div className="text-gray-400 text-sm mb-1">Total Students</div>
                           <div className="text-2xl font-bold text-white">{quiz.students}</div>
                         </div>
-                        <div className="bg-purple-500/10 rounded-lg p-4 border border-purple-500/20">
+                        <div className="bg-blue-900/20 rounded-lg p-4 border border-blue-500/20">
                           <div className="text-gray-400 text-sm mb-1">Average Score</div>
-                          <div className="text-2xl font-bold text-purple-400">{quiz.avgScore}%</div>
+                          <div className="text-2xl font-bold text-blue-400">{quiz.avgScore}%</div>
                         </div>
-                        <div className="bg-purple-500/10 rounded-lg p-4 border border-purple-500/20">
+                        <div className="bg-blue-900/20 rounded-lg p-4 border border-blue-500/20">
                           <div className="text-gray-400 text-sm mb-1">Completion Rate</div>
                           <div className="text-2xl font-bold text-green-400">94%</div>
                         </div>
@@ -895,7 +899,7 @@ export default function TeacherDashboard() {
 
       {showShareModal && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-slate-900 rounded-3xl shadow-2xl border border-purple-500/20 p-8 max-w-md w-full">
+          <div className="bg-slate-900 rounded-3xl shadow-2xl border border-blue-500/20 p-8 max-w-md w-full">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-2xl font-bold text-white">Share Quiz</h3>
               <button
@@ -917,7 +921,7 @@ export default function TeacherDashboard() {
                 />
                 <button
                   onClick={copyToClipboard}
-                  className="bg-purple-500 hover:bg-purple-600 text-white cursor-pointer px-4 rounded-xl transition-all duration-300 flex items-center space-x-2"
+                  className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer px-4 rounded-xl transition-all duration-300 flex items-center space-x-2"
                 >
                   {copiedLink ? <CheckCircle className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
                 </button>
@@ -927,7 +931,7 @@ export default function TeacherDashboard() {
               )}
             </div>
 
-            <div>
+            {/* <div>
               <label className="block text-sm font-medium text-gray-400 mb-3">Share on Social Media</label>
               <div className="grid grid-cols-2 gap-3">
                 <button
@@ -959,7 +963,7 @@ export default function TeacherDashboard() {
                   <span>Email</span>
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       )}

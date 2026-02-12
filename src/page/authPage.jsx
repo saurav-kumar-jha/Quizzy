@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Mail, Lock, User, Calendar, BookOpen, Eye, EyeOff, ArrowRight, Turtle, CheckCircle, AlertCircle, Loader, Book } from 'lucide-react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { loginUser } from '../Redux/feature/userSlice';
 import api from '../util/authApi';
 import { useAuth } from '../context/AuthProvider';
 import { toast } from 'react-toastify';
@@ -52,7 +50,7 @@ export default function AuthPages() {
       })
       console.log(res);
       if(res.status == 200){
-        setIsLoggedIn(true)
+        
         const response = await api.get("/auth/me",{
           headers:{
             "Authorization":`Bearer ${res.data.token}`
@@ -71,10 +69,9 @@ export default function AuthPages() {
         })
         setMessage('Login successfull');
         setMessageType('success');
-
-        setTimeout(() => {
-          navigate("/")          
-        }, 1500);
+        setIsLoggedIn(true)
+        
+        navigate("/")
       }else{
         setMessage('Login failed');
         setMessageType('error');
@@ -135,10 +132,10 @@ export default function AuthPages() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
       </div>
 
       <div className="relative w-full max-w-md">
@@ -147,13 +144,13 @@ export default function AuthPages() {
           </div>
         </div>
 
-        <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-purple-500/20 p-8">
+        <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-blue-500/20 p-8">
           <div className="flex bg-slate-800/50 rounded-full p-1 mb-8">
             <button
               onClick={() => setIsLogin(true)}
               className={`flex-1 py-3 rounded-full cursor-pointer font-semibold transition-all duration-300 ${
                 isLogin
-                  ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                  ? 'bg-blue-600 text-white shadow-lg'
                   : 'text-gray-400 hover:text-white'
               }`}
             >
@@ -163,7 +160,7 @@ export default function AuthPages() {
               onClick={() => setIsLogin(false)}
               className={`flex-1 py-3 rounded-full cursor-pointer font-semibold transition-all duration-300 ${
                 !isLogin
-                  ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                  ? 'bg-blue-600 text-white shadow-lg'
                   : 'text-gray-400 hover:text-white'
               }`}
             >
@@ -219,7 +216,7 @@ export default function AuthPages() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"
+                      className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
                       placeholder="Enter your full name"
                     />
                   </div>
@@ -238,7 +235,7 @@ export default function AuthPages() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"
+                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
                   placeholder="Enter your email"
                 />
               </div>
@@ -256,7 +253,7 @@ export default function AuthPages() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"
+                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
                     placeholder="eg: Maths"
                   />
                 </div>
@@ -274,7 +271,7 @@ export default function AuthPages() {
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 pl-11 pr-12 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"
+                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 pl-11 pr-12 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
                   placeholder="Enter your password"
                 />
                 <button
@@ -299,7 +296,7 @@ export default function AuthPages() {
                     name="confirmPassword"
                     value={formData.confirmPassword}
                     onChange={handleChange}
-                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"
+                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
                     placeholder="Confirm your password"
                   />
                 </div>
@@ -311,11 +308,11 @@ export default function AuthPages() {
                 <label className="flex items-center space-x-2 cursor-pointer">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 rounded border-slate-700 cursor-pointer bg-slate-800/50 text-purple-500 focus:ring-purple-500 focus:ring-offset-0"
+                    className="w-4 h-4 rounded border-slate-700 cursor-pointer bg-slate-800/50 text-blue-600 focus:ring-blue-500 focus:ring-offset-0"
                   />
                   <span className="text-sm text-gray-400 cursor-pointer">Remember me</span>
                 </label>
-                <Link to="/auth/forget-password" className="text-sm text-purple-400 cursor-pointer hover:text-purple-300 transition-colors">
+                <Link to="/auth/forget-password" className="text-sm text-blue-400 cursor-pointer hover:text-blue-300 transition-colors">
                   Forgot Password?
                 </Link>
               </div>
@@ -325,15 +322,15 @@ export default function AuthPages() {
               <label className="flex items-start space-x-2 cursor-pointer">
                 <input
                   type="checkbox"
-                  className="w-4 h-4 mt-1 rounded border-slate-700 bg-slate-800/50 text-purple-500 focus:ring-purple-500 focus:ring-offset-0"
+                  className="w-4 h-4 mt-1 rounded border-slate-700 bg-slate-800/50 text-blue-600 focus:ring-blue-500 focus:ring-offset-0"
                 />
                 <span className="text-sm text-gray-400">
                   I agree to the{' '}
-                  <a href="#" className="text-purple-400 hover:text-purple-300 ">
+                  <a href="#" className="text-blue-400 hover:text-blue-300 ">
                     Terms & Conditions
                   </a>{' '}
                   and{' '}
-                  <a href="#" className="text-purple-400 hover:text-purple-300">
+                  <a href="#" className="text-blue-400 hover:text-blue-300">
                     Privacy Policy
                   </a>
                 </span>
@@ -344,7 +341,7 @@ export default function AuthPages() {
             <>
             <button
               onClick={handleSubmit}
-              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-3 cursor-pointer rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 flex items-center justify-center group"
+              className="w-full bg-blue-600 text-white font-semibold py-3 cursor-pointer rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 flex items-center justify-center group"
               disabled={isDisabled}
             >
               {loading?(
@@ -363,7 +360,7 @@ export default function AuthPages() {
             <>
             <button
               onClick={handleRegister}
-              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-3 cursor-pointer rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 flex items-center justify-center group"
+              className="w-full bg-blue-600 text-white font-semibold py-3 cursor-pointer rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 flex items-center justify-center group"
               disabled={isDisabled}
             >
               {loading?(
@@ -384,7 +381,7 @@ export default function AuthPages() {
             {isLogin ? "Don't have an account? " : 'Already have an account? '}
             <button
               onClick={() => setIsLogin(!isLogin)}
-              className="text-purple-400 hover:text-purple-300 cursor-pointer font-semibold transition-colors"
+              className="text-blue-400 hover:text-blue-300 cursor-pointer font-semibold transition-colors"
             >
               {isLogin ? 'Register now' : 'Login here'}
             </button>
@@ -393,11 +390,11 @@ export default function AuthPages() {
 
         <p className="text-center text-gray-500 mt-6 text-sm">
           Protected by reCAPTCHA and subject to the Google{' '}
-          <a href="#" className="text-purple-400 hover:text-purple-300">
+          <a href="#" className="text-blue-400 hover:text-blue-300">
             Privacy Policy
           </a>{' '}
           and{' '}
-          <a href="#" className="text-purple-400 hover:text-purple-300">
+          <a href="#" className="text-blue-400 hover:text-blue-300">
             Terms of Service
           </a>
           .

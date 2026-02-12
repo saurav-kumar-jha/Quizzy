@@ -33,7 +33,7 @@ export default function StudentResultPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-20 p-4 md:p-8">
+    <div className="min-h-screen bg-slate-900 pt-20 p-4 md:p-8">
       <div className="max-w-5xl mx-auto">
         {/* Back Button */}
         <button
@@ -45,7 +45,7 @@ export default function StudentResultPage() {
         </button>
 
         {/* Result Header */}
-        <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-purple-500/20 p-8 mb-6">
+        <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-blue-500/20 p-8 mb-6">
           <div className="text-center mb-6">
             <div className={`w-24 h-24 mx-auto bg-gradient-to-r ${
               resultData.percentage >= 60 ? 'from-green-500 to-emerald-500' : 'from-red-500 to-rose-500'
@@ -66,14 +66,14 @@ export default function StudentResultPage() {
 
           {/* Score Summary */}
           <div className="grid md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl p-6 border border-purple-500/20 text-center">
+            <div className="bg-blue-900/20 rounded-2xl p-6 border border-blue-500/20 text-center">
               <div className="text-gray-400 text-sm mb-2">Your Score</div>
               <div className={`text-4xl font-bold ${getScoreColor(resultData.percentage)}`}>
                 {resultData.percentage}%
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl p-6 border border-purple-500/20 text-center">
+            <div className="bg-blue-900/20 rounded-2xl p-6 border border-blue-500/20 text-center">
               <div className="text-gray-400 text-sm mb-2">Questions</div>
               <div className="text-3xl font-bold text-white">
                 {resultData.score}
@@ -168,7 +168,7 @@ export default function StudentResultPage() {
         </div>
 
         {/* Performance Summary */}
-        <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
+        <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-8">
           <h3 className="text-2xl font-bold text-white mb-6 flex items-center space-x-2">
             <BarChart3 className="w-6 h-6" />
             <span>Performance Summary</span>
@@ -176,7 +176,7 @@ export default function StudentResultPage() {
 
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-3">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Target className="w-8 h-8 text-white" />
               </div>
               <div className="text-2xl font-bold text-white mb-1">
@@ -207,7 +207,7 @@ export default function StudentResultPage() {
           </div>
 
           {/* Motivational Message */}
-          <div className="mt-8 p-6 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl border border-purple-500/20">
+          <div className="mt-8 p-6 bg-blue-900/20 rounded-xl border border-blue-500/20">
             <p className="text-center text-gray-300">
               {resultData.percentage >= 80 
                 ? "Outstanding performance! You've mastered this topic. Keep up the excellent work!"
@@ -222,7 +222,7 @@ export default function StudentResultPage() {
         <div className="mt-6 flex flex-col sm:flex-row gap-4">
           {/* <button
             onClick={() => navigate('/')}
-            className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
+            className="flex-1 bg-blue-600 text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
           >
             Back to Home
           </button> */}

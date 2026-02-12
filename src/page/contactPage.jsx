@@ -240,7 +240,7 @@ export default function ContactFeedbackPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-20 p-4 md:p-8">
+    <div className="min-h-screen bg-slate-900 pt-20 p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -249,13 +249,13 @@ export default function ContactFeedbackPage() {
         </div>
 
         {/* Tab Navigation */}
-        <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 mb-6 overflow-x-auto">
+        <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 mb-6 overflow-x-auto">
           <div className="flex min-w-max">
             <button
               onClick={() => setActiveTab('contact')}
               className={`flex-1 py-4 px-6 font-semibold cursor-pointer transition-all flex items-center justify-center space-x-2 ${
                 activeTab === 'contact'
-                  ? 'text-white border-b-2 border-purple-500 bg-purple-500/10'
+                  ? 'text-white border-b-2 border-blue-500 bg-blue-900/20'
                   : 'text-gray-400 hover:text-white hover:bg-slate-800/50'
               }`}
             >
@@ -267,7 +267,7 @@ export default function ContactFeedbackPage() {
               onClick={() => setActiveTab('experience')}
               className={`flex-1 py-4 px-6 font-semibold cursor-pointer transition-all flex items-center justify-center space-x-2 ${
                 activeTab === 'experience'
-                  ? 'text-white border-b-2 border-purple-500 bg-purple-500/10'
+                  ? 'text-white border-b-2 border-blue-500 bg-blue-900/20'
                   : 'text-gray-400 hover:text-white hover:bg-slate-800/50'
               }`}
             >
@@ -279,7 +279,7 @@ export default function ContactFeedbackPage() {
               onClick={() => setActiveTab('testimonial')}
               className={`flex-1 py-4 px-6 font-semibold cursor-pointer transition-all flex items-center justify-center space-x-2 ${
                 activeTab === 'testimonial'
-                  ? 'text-white border-b-2 border-purple-500 bg-purple-500/10'
+                  ? 'text-white border-b-2 border-blue-500 bg-blue-900/20'
                   : 'text-gray-400 hover:text-white hover:bg-slate-800/50'
               }`}
             >
@@ -291,7 +291,7 @@ export default function ContactFeedbackPage() {
               onClick={() => setActiveTab('suggestion')}
               className={`flex-1 py-4 px-6 font-semibold cursor-pointer transition-all flex items-center justify-center space-x-2 ${
                 activeTab === 'suggestion'
-                  ? 'text-white border-b-2 border-purple-500 bg-purple-500/10'
+                  ? 'text-white border-b-2 border-blue-500 bg-blue-900/20'
                   : 'text-gray-400 hover:text-white hover:bg-slate-800/50'
               }`}
             >
@@ -311,9 +311,9 @@ export default function ContactFeedbackPage() {
 
         {/* Contact Form */}
         {activeTab === 'contact' && (
-          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
+          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-8">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
                 <Mail className="w-6 h-6 text-white" /> 
               </div>
               <div>
@@ -330,7 +330,7 @@ export default function ContactFeedbackPage() {
                     type="text"
                     value={contactData.name}
                     onChange={(e) => setContactData({...contactData, name: e.target.value})}
-                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                     placeholder="Your name"
                     required
                   />
@@ -342,7 +342,7 @@ export default function ContactFeedbackPage() {
                     type="email"
                     value={contactData.email}
                     onChange={(e) => setContactData({...contactData, email: e.target.value})}
-                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                     placeholder="name@example.com"
                     required
                   />
@@ -355,7 +355,7 @@ export default function ContactFeedbackPage() {
                   type="tel"
                   value={contactData.phone}
                   onChange={(e) => setContactData({...contactData, phone: e.target.value})}
-                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                   placeholder="+1 234 567 8900"
                 />
               </div>
@@ -365,7 +365,7 @@ export default function ContactFeedbackPage() {
                 <select
                   value={contactData.reason}
                   onChange={(e) => setContactData({...contactData, reason: e.target.value})}
-                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                   required
                 >
                   <option value="">Select a reason</option>
@@ -382,7 +382,7 @@ export default function ContactFeedbackPage() {
                 <textarea
                   value={contactData.message}
                   onChange={(e) => setContactData({...contactData, message: e.target.value})}
-                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                   placeholder="Tell us more about your inquiry..."
                   rows="5"
                   required
@@ -392,7 +392,7 @@ export default function ContactFeedbackPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r cursor-pointer from-purple-500 to-pink-500 text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="w-full bg-blue-600 cursor-pointer text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
                 {isSubmitting ? (
                   <>
@@ -412,9 +412,9 @@ export default function ContactFeedbackPage() {
 
         {/* Experience Form */}
         {activeTab === 'experience' && (
-          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
+          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-8">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
                 <MessageCircle className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -430,7 +430,7 @@ export default function ContactFeedbackPage() {
                   type="text"
                   value={experienceData.nameOrEmail}
                   onChange={(e) => setExperienceData({...experienceData, nameOrEmail: e.target.value})}
-                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                   placeholder="Your name or email"
                   required
                 />
@@ -447,7 +447,7 @@ export default function ContactFeedbackPage() {
                 <textarea
                   value={experienceData.message}
                   onChange={(e) => setExperienceData({...experienceData, message: e.target.value})}
-                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                   placeholder="Share your experience with Quizzy..."
                   rows="6"
                   required
@@ -457,7 +457,7 @@ export default function ContactFeedbackPage() {
               <button
                 type="submit"
                 disabled={isSubmitting || experienceData.rating === 0}
-                className="w-full bg-gradient-to-r cursor-pointer from-purple-500 to-pink-500 text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="w-full bg-blue-600 cursor-pointer text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
                 {isSubmitting ? (
                   <>
@@ -477,9 +477,9 @@ export default function ContactFeedbackPage() {
 
         {/* Testimonial Form */}
         {activeTab === 'testimonial' && (
-          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
+          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-8">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
                 <Award className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -496,7 +496,7 @@ export default function ContactFeedbackPage() {
                     type="text"
                     value={testimonialData.name}
                     onChange={(e) => setTestimonialData({...testimonialData, name: e.target.value})}
-                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                     placeholder="Your name"
                     required
                   />
@@ -508,7 +508,7 @@ export default function ContactFeedbackPage() {
                     type="text"
                     value={testimonialData.role}
                     onChange={(e) => setTestimonialData({...testimonialData, role: e.target.value})}
-                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                     placeholder="Teacher, Student, etc."
                     required
                   />
@@ -521,7 +521,7 @@ export default function ContactFeedbackPage() {
                   type="text"
                   value={testimonialData.organization}
                   onChange={(e) => setTestimonialData({...testimonialData, organization: e.target.value})}
-                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                   placeholder="Your school or organization"
                 />
               </div>
@@ -537,7 +537,7 @@ export default function ContactFeedbackPage() {
                 <textarea
                   value={testimonialData.testimonial}
                   onChange={(e) => setTestimonialData({...testimonialData, testimonial: e.target.value})}
-                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                   placeholder="Write your testimonial here..."
                   rows="6"
                   required
@@ -548,7 +548,7 @@ export default function ContactFeedbackPage() {
               <button
                 type="submit"
                 disabled={isSubmitting || testimonialData.rating === 0}
-                className="w-full bg-gradient-to-r cursor-pointer from-purple-500 to-pink-500 text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="w-full bg-blue-600 cursor-pointer text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
                 {isSubmitting ? (
                   <>
@@ -568,9 +568,9 @@ export default function ContactFeedbackPage() {
 
         {/* Suggestion Form */}
         {activeTab === 'suggestion' && (
-          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-8">
+          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-8">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
                 <Lightbulb className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -587,7 +587,7 @@ export default function ContactFeedbackPage() {
                     type="text"
                     value={suggestionData.name}
                     onChange={(e) => setSuggestionData({...suggestionData, name: e.target.value})}
-                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                     placeholder="Your name"
                     required
                   />
@@ -599,7 +599,7 @@ export default function ContactFeedbackPage() {
                     type="email"
                     value={suggestionData.email}
                     onChange={(e) => setSuggestionData({...suggestionData, email: e.target.value})}
-                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                     placeholder="name@example.com"
                     required
                   />
@@ -611,7 +611,7 @@ export default function ContactFeedbackPage() {
                 <select
                   value={suggestionData.category}
                   onChange={(e) => setSuggestionData({...suggestionData, category: e.target.value})}
-                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                   required
                 >
                   <option value="">Select a category</option>
@@ -628,7 +628,7 @@ export default function ContactFeedbackPage() {
                 <textarea
                   value={suggestionData.suggestion}
                   onChange={(e) => setSuggestionData({...suggestionData, suggestion: e.target.value})}
-                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                   placeholder="Describe your suggestion in detail..."
                   rows="6"
                   required
@@ -638,7 +638,7 @@ export default function ContactFeedbackPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r cursor-pointer from-purple-500 to-pink-500 text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="w-full bg-blue-600 cursor-pointer text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
                 {isSubmitting ? (
                   <>

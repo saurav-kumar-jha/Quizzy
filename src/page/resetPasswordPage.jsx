@@ -135,11 +135,11 @@ export default function ResetPassword() {
   const passwordStrength = getPasswordStrength(formData.password);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
       </div>
 
       <div className="relative w-full max-w-md">
@@ -152,10 +152,10 @@ export default function ResetPassword() {
         </div>
 
         {/* Reset Password Card */}
-        <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-purple-500/20 p-8">
+        <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-blue-500/20 p-8">
           {/* Icon */}
           <div className="flex justify-center mb-6">
-            <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+            <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
               <Shield className="w-8 h-8 text-white" />
             </div>
           </div>
@@ -208,7 +208,7 @@ export default function ResetPassword() {
                   onChange={handleChange}
                   className={`w-full bg-slate-800/50 border ${
                     errors.password ? 'border-red-500' : 'border-slate-700'
-                  } text-white rounded-xl py-3 pl-11 pr-12 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all`}
+                  } text-white rounded-xl py-3 pl-11 pr-12 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all`}
                   placeholder="Enter new password"
                   disabled={isLoading}
                 />
@@ -263,7 +263,7 @@ export default function ResetPassword() {
                   onChange={handleChange}
                   className={`w-full bg-slate-800/50 border ${
                     errors.confirmPassword ? 'border-red-500' : 'border-slate-700'
-                  } text-white rounded-xl py-3 pl-11 pr-12 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all`}
+                  } text-white rounded-xl py-3 pl-11 pr-12 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all`}
                   placeholder="Confirm new password"
                   disabled={isLoading}
                 />
@@ -319,7 +319,7 @@ export default function ResetPassword() {
             <button
               onClick={handleSubmit}
               disabled={isLoading || !formData.password || !formData.confirmPassword}
-              className="w-full bg-gradient-to-r cursor-pointer from-purple-500 to-pink-500 text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+              className="w-full bg-blue-600 cursor-pointer text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
             >
               {isLoading ? (
                 <>
@@ -336,7 +336,7 @@ export default function ResetPassword() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-400">
               Remember your password?{' '}
-              <a href="#" className="text-purple-400 hover:text-purple-300 font-semibold transition-colors">
+              <a href="#" className="text-blue-400 hover:text-blue-300 font-semibold transition-colors">
                 Login here
               </a>
             </p>

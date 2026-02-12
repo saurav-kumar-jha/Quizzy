@@ -57,11 +57,11 @@ export default function ForgotPassword() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
       </div>
 
       <div className="relative w-full max-w-md">
@@ -74,7 +74,7 @@ export default function ForgotPassword() {
         </div>
 
         {/* Forgot Password Card */}
-        <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-purple-500/20 p-8">
+        <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-blue-500/20 p-8">
           {/* Back Button */}
           <button
             onClick={()=>navigate(-1)}
@@ -128,7 +128,7 @@ export default function ForgotPassword() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"
+                  className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
                   placeholder="Enter your email"
                   disabled={isLoading}
                   required
@@ -140,7 +140,7 @@ export default function ForgotPassword() {
             <button
               onClick={handleSubmit}
               disabled={isLoading || !email}
-              className="w-full bg-gradient-to-r cursor-pointer from-purple-500 to-pink-500 text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+              className="w-full bg-blue-600 cursor-pointer text-white font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
             >
               {isLoading ? (
                 <>
@@ -159,7 +159,7 @@ export default function ForgotPassword() {
               Remember your password?{' '}
               <button
                 onClick={()=>navigate(-1)}
-                className="text-purple-400 hover:text-purple-300 font-semibold transition-colors"
+                className="text-blue-400 hover:text-blue-300 font-semibold transition-colors"
               >
                 Login here
               </button>
@@ -171,7 +171,7 @@ export default function ForgotPassword() {
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-500">
             If you don't receive an email within 5 minutes, check your spam folder or{' '}
-            <a href="#" className="text-purple-400 hover:text-purple-300 transition-colors">
+            <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors">
               contact support
             </a>
             .

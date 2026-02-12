@@ -334,7 +334,7 @@ export default function QuizResultsDetailPage() {
         prev.filter(q => q.id !== questionId)
       );
 
-      alert("✅ Question deleted successfully");
+      alert("Question deleted successfully");
 
       console.log("Delete Response:", res);
 
@@ -347,16 +347,16 @@ export default function QuizResultsDetailPage() {
           error.response.data?.message || "Something went wrong";
 
         if (status === 401) {
-          alert("🔐 Session expired. Please login again.");
+          alert("Session expired. Please login again.");
         } else if (status === 403) {
-          alert("🚫 You are not allowed to delete this question.");
+          alert("You are not allowed to delete this question.");
         } else if (status === 404) {
-          alert("❓ Question not found.");
+          alert("Question not found.");
         } else {
-          alert(`❌ ${message}`);
+          alert(`${message}`);
         }
       } else {
-        alert("🌐 Network error. Please try again.");
+        alert("Network error. Please try again.");
       }
     }
   };
@@ -429,9 +429,9 @@ export default function QuizResultsDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
         <div className="text-center">
-          <Loader className="w-12 h-12 text-purple-400 animate-spin mx-auto mb-4" />
+          <Loader className="w-12 h-12 text-blue-400 animate-spin mx-auto mb-4" />
           <p className="text-white text-lg">Loading results...</p>
         </div>
       </div>
@@ -439,7 +439,7 @@ export default function QuizResultsDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-20 p-4 md:p-8">
+    <div className="min-h-screen bg-slate-900 pt-20 p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-6 mt-6">
@@ -452,7 +452,7 @@ export default function QuizResultsDetailPage() {
             <div className="flex gap-3">
               <button
                 onClick={() => setShowAddQuestion(true)}
-                className="flex items-center cursor-pointer space-x-2 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-xl transition-all duration-300"
+                className="flex items-center cursor-pointer space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl transition-all duration-300"
               >
                 <Plus className="w-5 h-5" />
                 <span>Add Question</span>
@@ -471,7 +471,7 @@ export default function QuizResultsDetailPage() {
         {/* Add Question Modal */}
         {showAddQuestion && (
           <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-            <div className="bg-slate-900 rounded-3xl shadow-2xl border border-purple-500/20 p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="bg-slate-900 rounded-3xl shadow-2xl border border-blue-500/20 p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-2xl font-bold text-white">Add New Question</h3>
                 <button
@@ -489,7 +489,7 @@ export default function QuizResultsDetailPage() {
                     type="text"
                     value={newQuestion.question}
                     onChange={(e) => setNewQuestion({ ...newQuestion, question: e.target.value })}
-                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                    className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
                     placeholder="Enter your question"
                   />
                 </div>
@@ -500,7 +500,7 @@ export default function QuizResultsDetailPage() {
                     {newQuestion.options.length < 6 && (
                       <button
                         onClick={addOption}
-                        className="text-purple-400 hover:text-purple-300 text-sm flex items-center space-x-1"
+                        className="text-blue-400 hover:text-blue-300 text-sm flex items-center space-x-1"
                       >
                         <Plus className="w-4 h-4" />
                         <span>Add Option</span>
@@ -516,14 +516,14 @@ export default function QuizResultsDetailPage() {
                           name="correctAnswer"
                           checked={newQuestion.correctAnswer === option}
                           onChange={() => setNewQuestion({ ...newQuestion, correctAnswer: option })}
-                          className="w-5 h-5 text-purple-500 focus:ring-purple-500"
+                          className="w-5 h-5 text-blue-600 focus:ring-blue-500"
                           disabled={!option.trim()}
                         />
                         <input
                           type="text"
                           value={option}
                           onChange={(e) => updateOption(index, e.target.value)}
-                          className="flex-1 bg-slate-800/50 border border-slate-700 text-white rounded-xl py-2 px-4 focus:outline-none focus:border-purple-500"
+                          className="flex-1 bg-slate-800/50 border border-slate-700 text-white rounded-xl py-2 px-4 focus:outline-none focus:border-blue-500"
                           placeholder={`Option ${index + 1}`}
                         />
                         {newQuestion.options.length > 4 && (
@@ -585,7 +585,7 @@ export default function QuizResultsDetailPage() {
             </div>
             <div className="space-y-4">
               {questions.map((q, index) => (
-                <div key={q.id} className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-6">
+                <div key={q.id} className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-6">
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex-1">
                       <h3 className="text-lg font-bold text-white mb-3">
@@ -627,23 +627,23 @@ export default function QuizResultsDetailPage() {
 
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-6">
+          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-6">
             <div className="flex items-center justify-between mb-2">
               <span className="text-gray-400 text-sm">Total Students</span>
-              <Users className="w-5 h-5 text-purple-400" />
+              <Users className="w-5 h-5 text-blue-400" />
             </div>
             <div className="text-3xl font-bold text-white">{results.length}</div>
           </div>
 
-          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-6">
+          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-6">
             <div className="flex items-center justify-between mb-2">
               <span className="text-gray-400 text-sm">Average Score</span>
-              <TrendingUp className="w-5 h-5 text-purple-400" />
+              <TrendingUp className="w-5 h-5 text-blue-400" />
             </div>
             <div className="text-3xl font-bold text-white">{stats.avg}</div>
           </div>
 
-          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-6">
+          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-6">
             <div className="flex items-center justify-between mb-2">
               <span className="text-gray-400 text-sm">Highest Score</span>
               <Award className="w-5 h-5 text-green-400" />
@@ -651,17 +651,17 @@ export default function QuizResultsDetailPage() {
             <div className="text-3xl font-bold text-green-400">{stats.highest}</div>
           </div>
 
-          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-6">
+          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-6">
             <div className="flex items-center justify-between mb-2">
               <span className="text-gray-400 text-sm">Pass Rate</span>
-              <CheckCircle className="w-5 h-5 text-purple-400" />
+              <CheckCircle className="w-5 h-5 text-blue-400" />
             </div>
             <div className="text-3xl font-bold text-white">{((stats.passed / results.length) * 100).toFixed(0)}%</div>
           </div>
         </div>
 
         {/* Search and Filter */}
-        <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-6 mb-6">
+        <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-6 mb-6">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -670,7 +670,7 @@ export default function QuizResultsDetailPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by name, email, or roll number..."
-                className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:border-purple-500"
+                className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:border-blue-500"
               />
             </div>
 
@@ -679,7 +679,7 @@ export default function QuizResultsDetailPage() {
               <select
                 value={sortBy}
                 onChange={(e) => handleSort(e.target.value)}
-                className="bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500"
+                className="bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-blue-500"
               >
                 <option value="date">Sort by Date</option>
                 <option value="score-high">Score: High to Low</option>
@@ -691,7 +691,7 @@ export default function QuizResultsDetailPage() {
         </div>
 
         {/* Results Table */}
-        <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 overflow-hidden">
+        <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-slate-800/50 border-b border-slate-700">
@@ -719,7 +719,7 @@ export default function QuizResultsDetailPage() {
                       </td>
                       <td className="p-4">
                         <div className="flex items-center space-x-3">
-                          <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">
+                          <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
                             {student.name.charAt(0).toUpperCase()}
                           </div>
                           <span className="text-white font-medium">{student.name}</span>
@@ -774,7 +774,7 @@ export default function QuizResultsDetailPage() {
         {/* Student details */}
         {showStudentDetail && (
           <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-            <div className="bg-slate-900 rounded-3xl shadow-2xl border border-purple-500/20 p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="bg-slate-900 rounded-3xl shadow-2xl border border-blue-500/20 p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
 
               {/* Header */}
               <div className="flex justify-between items-center mb-6">
@@ -790,16 +790,16 @@ export default function QuizResultsDetailPage() {
               {/* Loading */}
               {loadingStudentDetail ? (
                 <div className="text-center py-12">
-                  <Loader className="w-12 h-12 text-purple-400 animate-spin mx-auto mb-4" />
+                  <Loader className="w-12 h-12 text-blue-400 animate-spin mx-auto mb-4" />
                   <p className="text-gray-400">Loading student details...</p>
                 </div>
               ) : studentDetail ? (
                 <div className="space-y-6">
 
                   {/* Student Info */}
-                  <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl p-6 border border-purple-500/20">
+                  <div className="bg-blue-900/20 rounded-2xl p-6 border border-blue-500/20">
                     <div className="flex items-center space-x-4 mb-4">
-                      <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                      <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
                         {studentDetail.name?.charAt(0)?.toUpperCase()}
                       </div>
 
@@ -949,7 +949,7 @@ export default function QuizResultsDetailPage() {
 
         {/* Summary */}
         {filteredResults.length > 0 && (
-          <div className="mt-6 bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-6">
+          <div className="mt-6 bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-6">
             <div className="flex flex-wrap items-center justify-between gap-4 text-sm text-gray-400">
               <span>Showing {filteredResults.length} of {results.length} results</span>
               <span>
@@ -962,7 +962,7 @@ export default function QuizResultsDetailPage() {
       </div>
 
       {/* Questions  */}
-      <div className='mb-6 mt-4 px-4 py-6 text-gray-400 bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 overflow-hidden'>
+      <div className='mb-6 mt-4 px-4 py-6 text-gray-400 bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 overflow-hidden'>
 
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-white">{quizDetails?.name}</h1>
@@ -976,14 +976,14 @@ export default function QuizResultsDetailPage() {
             <>
               <p className='text-lg text-center'>No Questions</p>
               <button onClick={() => setShowAddQuestion(true)}
-                className="flex items-center  cursor-pointer space-x-2 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-xl transition-all duration-300" >Add Questions</button>
+                className="flex items-center  cursor-pointer space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl transition-all duration-300" >Add Questions</button>
             </>
           ) : (
             <div className="space-y-4">
               {quizQuestions.map((q, index) => (
                 <div
                   key={q.id}
-                  className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-purple-500/20 p-6"
+                  className="bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-xl border border-blue-500/20 p-6"
                 >
                   {/* Header */}
                   <div className="flex items-start justify-between mb-4">
