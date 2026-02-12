@@ -1,16 +1,106 @@
-# React + Vite
+# QUIZZY – Online Quiz Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+QUIZZY is a full-stack web application designed to conduct online quizzes securely and efficiently.  
+It replaces traditional paper-based examination systems with a modern, automated, and scalable digital solution.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Overview
 
-## React Compiler
+QUIZZY allows:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 👨‍🏫 Teachers to create and manage quizzes
+- 👩‍🎓 Students to attempt quizzes using a unique exam link
+- 📊 Automatic evaluation and instant result generation
 
-## Expanding the ESLint configuration
+The system ensures secure authentication, role-based access, and centralized data management.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🏗️ Project Architecture
+
+The project consists of two main parts:
+
+- **Frontend (React + Vite)** – Handles UI, routing, and API integration  
+- **Backend (Spring Boot)** – Handles authentication, business logic, and database operations  
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React.js
+- Vite
+- Axios
+- Tailwind CSS
+
+### Backend
+- Spring Boot
+- Spring Security
+- JWT Authentication
+
+### Database
+- PostgreSQL
+
+---
+
+## 🔐 Core Features
+
+- Role-Based Authentication (Teacher / Student)
+- Secure Login using JWT
+- Quiz Creation and Management
+- Question CRUD Operations
+- Unique Quiz Link Generation
+- Automatic Answer Evaluation
+- Instant Result Generation
+- Centralized Data Storage
+- Responsive UI Design
+
+---
+
+## ❗ Problems Solved
+
+- Eliminates manual paper-based exams  
+- Reduces time-consuming answer checking  
+- Removes human errors in evaluation  
+- Manages large numbers of students efficiently  
+- Enables remote exam access  
+- Improves exam security  
+- Provides structured result analysis  
+- Reduces repetitive work for teachers  
+
+---
+
+## ⚙️ How It Works
+
+1. Teacher registers and logs in  
+2. Teacher creates a quiz  
+3. Teacher adds multiple-choice questions  
+4. System generates a unique quiz link  
+5. Student opens the link and attempts the quiz  
+6. System evaluates answers automatically  
+7. Results are stored in the database  
+8. Teacher views performance reports  
+
+---
+
+## 👨‍🏫 Teacher Functionalities
+
+- Register & Login
+- Create Quiz
+- Add / Update / Delete Questions
+- Generate Exam Link
+- View Student Results
+- Manage Quiz Data
+
+---
+
+## 👩‍🎓 Student Functionalities
+
+- Access Quiz using link
+- Attempt Quiz
+- Submit Answers
+- View Result Instantly
+
+---
+
