@@ -167,7 +167,7 @@ export default function QuizResultsDetailPage() {
   const handleSubmitQuestions = async () => {
 
     if (questions.length === 0) {
-      toast.error("❗ Please add at least one question before submitting.");
+      toast.error("Please add at least one question before submitting.");
       return;
     }
 
@@ -176,12 +176,12 @@ export default function QuizResultsDetailPage() {
       const q = questions[i];
 
       if (!q.question || q.options.length < 2 || !q.correctAnswer) {
-        toast.error(`❗ Question ${i + 1} is incomplete. Please fill all fields.`);
+        toast.error(`Question ${i + 1} is incomplete. Please fill all fields.`);
         return;
       }
 
       if (!q.options.includes(q.correctAnswer)) {
-        toast.error(`❗ Correct answer must be one of the options (Question ${i + 1}).`);
+        toast.error(`Correct answer must be one of the options (Question ${i + 1}).`);
         return;
       }
     }
@@ -207,8 +207,9 @@ export default function QuizResultsDetailPage() {
         }
       );
 
-      toast.success(`✅ ${questions.length} question(s) added successfully!`);
+      toast.success(`${questions.length} question(s) added successfully!`);
       setQuestions([]);
+      fetchQuizDetails()
 
     } catch (error) {
 
@@ -218,29 +219,29 @@ export default function QuizResultsDetailPage() {
         const message = error.response.data?.message || "Something went wrong";
 
         if (status === 400) {
-          toast.error(`⚠️ ${message}`);
+          toast.error(`${message}`);
         }
         else if (status === 401) {
-          toast.error("🔐 Session expired. Please login again.");
+          toast.error("Session expired. Please login again.");
         }
         else if (status === 403) {
-          toast.error("🚫 You are not authorized to add questions.");
+          toast.error("You are not authorized to add questions.");
         }
         else if (status === 404) {
-          toast.error("❓ Quiz not found.");
+          toast.error("Quiz not found.");
         }
         else {
-          toast.error(`❌ Server error: ${message}`);
+          toast.error(`Server error: ${message}`);
         }
 
       }
       // Network error
       else if (error.request) {
-        toast.error("🌐 Network error. Please check your internet connection.");
+        toast.error("Network error. Please check your internet connection.");
       }
       // Unknown error
       else {
-        toast.error("❌ Unexpected error occurred.");
+        toast.error("Unexpected error occurred.");
       }
 
       console.error("Submit Question Error:", error);
