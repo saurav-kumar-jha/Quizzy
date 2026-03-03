@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BookOpen, Plus, List, User, LogOut, BarChart, Share2, Copy, CheckCircle, X, Trash2, Edit, Facebook, Twitter, Linkedin, Mail, Clock, Users, Loader, CircleOff, Circle, Upload, Check, RefreshCw } from 'lucide-react';
+import { BookOpen, Plus, List, User, LogOut, BarChart, Share2, Copy, CheckCircle, X, Trash2, Edit, Facebook, Twitter, Linkedin, Mail, Clock, Users, Loader, CircleOff, Circle, Upload, Check, RefreshCw, Lock } from 'lucide-react';
 import { useAuth } from '../context/AuthProvider';
 import api from '../util/authApi';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -82,6 +82,11 @@ export default function TeacherDashboard() {
     e.preventDefault()
     console.log("quizData:", quizData)
 
+    if (quizData.isLocked && !quizData.password.trim()) {
+      alert('Please enter a password for the locked quiz');
+      return;
+    }
+
     setLoading(true)
     try {
       const res = await api.post("/quiz/create", {
@@ -91,7 +96,9 @@ export default function TeacherDashboard() {
         teacherId: user.id,
         reqName: quizData.reqName,
         reqEmail: quizData.reqEmail,
-        reqRoll: quizData.reqRoll
+        reqRoll: quizData.reqRoll,
+        isLocked: quizData.isLocked,                              // Include lock status
+        password: quizData.isLocked ? quizData.password : null
       }, {
         headers: {
           "Authorization": `Bearer ${user.token}`
@@ -284,13 +291,14 @@ export default function TeacherDashboard() {
     return res.data?.secure_url;
   }
 
-  const handleRefresh = ()=>{
+  const handleRefresh = () => {
     setIsRotating(true);
-      fetchQuizz(); // your original function
+    fetchQuizz(); // your original function
 
-  
+
     setIsRotating(false);
   }
+
 
   return (
     <div className="min-h-screen bg-slate-900">
@@ -740,10 +748,72 @@ export default function TeacherDashboard() {
                       These options control which details students must fill before attempting the quiz.
                     </p>
 
+                    {/* Quiz Lock Feature - NEW */}
+                    <div className="mt-6">
+                      <label className="block text-sm font-medium text-gray-300 mb-3">
+                        Quiz Security
+                      </label>
 
+                      <div className="space-y-3">
+                        {/* Lock Toggle */}
+                        <div className="flex items-center justify-between bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3">
+                          <div className="flex items-center space-x-2">
+                            <Lock className="w-5 h-5 text-gray-400" />
+                            <span className="text-gray-300">Password Protection</span>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setQuizData(prev => ({
+                                ...prev,
+                                isLocked: !prev.isLocked,
+                                password: prev.isLocked ? '' : prev.password
+                              }))
+                            }
+                            className={`w-12 h-6 flex items-center cursor-pointer rounded-full p-1 transition-all ${quizData.isLocked ? 'bg-blue-600' : 'bg-gray-600'
+                              }`}
+                          >
+                            <span
+                              className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-all ${quizData.isLocked ? 'translate-x-6' : 'translate-x-0'
+                                }`}
+                            />
+                          </button>
+                        </div>
+
+                        {/* Password Input - Shows only when locked */}
+                        {quizData.isLocked && (
+                          <div className="bg-slate-800/30 rounded-xl p-4 border border-slate-700">
+                            <label className="block text-sm font-medium text-gray-300 mb-2">
+                              Quiz Password *
+                            </label>
+                            <div className="relative">
+                              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                              <input
+                                type="password"
+                                value={quizData.password}
+                                onChange={(e) => setQuizData({ ...quizData, password: e.target.value })}
+                                className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                                placeholder="Enter quiz password"
+                              />
+                            </div>
+                            <p className="text-xs text-gray-400 mt-2">
+                              Students will need this password to access the quiz
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-gray-400 mt-2">
+                      Enable password protection to restrict quiz access to authorized students only.
+                    </p>
 
                     {/* Submit btn  */}
-                    <button onClick={handleCreateQuiz} className="w-full bg-blue-600 cursor-pointer flex items-center justify-center hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-all duration-300">
+                    <button
+                      onClick={handleCreateQuiz}
+                      disabled={loading || (quizData.isLocked && !quizData.password.trim())}
+                      className="w-full bg-blue-600 cursor-pointer flex items-center justify-center hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
                       {
                         loading ? (
                           <>
