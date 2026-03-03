@@ -22,7 +22,9 @@ export const AuthProvider = ({ children }) => {
     reqName:true,
     reqEmail:true,
     reqRoll:true,
-    questions: []
+    questions: [],
+    isLocked: false,
+    password:''
   });
   const [previousQuizzes, setPreviousQuizzes] = useState([]);
   const [authReady, setAuthReady] = useState(false);
