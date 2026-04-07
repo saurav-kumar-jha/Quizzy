@@ -15,6 +15,7 @@ import { ToastContainer } from 'react-toastify'
 import FeaturesPage from './page/features'
 import HowItWorksPage from './page/hiw'
 import StudentResultPage from './page/studentResultView'
+import AdminDashboard from './page/AdminDashboard'
 
 const Home = ()=>{
   const navigate = useLocation()
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
   {
     path:"/result",
     element:<StudentResultPage/>
+  },
+  {
+    path:"/admin/home",
+    element: <AdminDashboard />
   }
 ])
 function App() {

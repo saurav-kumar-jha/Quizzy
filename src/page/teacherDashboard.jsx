@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import "../App.css"
 
 export default function TeacherDashboard() {
-  const [activeTab, setActiveTab] = useState('profile');
+  const [activeTab, setActiveTab] = useState('profile'); 
   const [searchParams, setSearchParams] = useSearchParams();
   const [showCreateQuiz, setShowCreateQuiz] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
